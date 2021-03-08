@@ -1,0 +1,21 @@
+.subform__contacts{
+    display: flex;
+    flex-direction: column;
+}
+
+.subform__contacts > * {
+    margin-bottom: 20px;
+}
+
+.subform__mobile,
+.subform__phone{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.subform__mobile label,
+.subform__phone label{
+    font-size: 12px;
+    margin-bottom: 5px;
+}

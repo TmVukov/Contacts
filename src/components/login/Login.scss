@@ -1,0 +1,16 @@
+@import '../../styles/mixins.scss'; 
+
+.login__container a{
+    @include link;
+}
+
+.login__form{
+    @include form;
+    width: 200px;    
+}
+
+.login__form > * {
+    margin-bottom: 25px;
+}
+
+

@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Oi&display=swap');
+@import '../../styles/mixins.scss'; 
+
+.home__logo{   
+    font-family: 'Black Han Sans', sans-serif;
+    color: white;
+    font-size: 50px;
+}
+
+.home__links{    
+    display: flex;
+    justify-content: space-between;
+    width: 150px;
+}
+
+.home__links > *{
+    @include link;
+}
+
+
+
+
+
+

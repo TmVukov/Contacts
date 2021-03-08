@@ -1,0 +1,21 @@
+@import '../../styles/mixins.scss'; 
+
+.favorites__container{
+    @include container;
+}
+
+.favorites__link{
+    @include link;
+}
+
+.favorites__table{
+    margin-top: 50px;
+}
+
+.favorites__table, tr, td{
+    @include table;
+}
+
+.favorites__table a{   
+    text-decoration: none;     
+}

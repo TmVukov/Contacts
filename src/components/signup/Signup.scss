@@ -1,0 +1,16 @@
+@import '../../styles/mixins.scss'; 
+
+.signup__container a{
+    @include link;
+}
+
+.signup__form{
+    @include form;
+    width: 200px;
+    
+}
+
+.signup__form > * {
+    margin-bottom: 25px;
+}
+

@@ -1,0 +1,26 @@
+@import '../../styles/mixins.scss'; 
+
+.details__container{
+    @include container;
+}
+
+.details__container a{
+    @include link;
+}
+
+.details__container button{
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.details__table{
+    margin-top: 30px;
+}
+
+.details__table, th, tr{    
+    @include table;
+}
+
+
+
+

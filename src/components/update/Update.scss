@@ -1,0 +1,17 @@
+@import '../../styles/mixins.scss'; 
+
+.update__container{
+    @include container;
+}
+
+.update__container a{
+    @include link;
+}
+
+.update__form{
+    @include form;
+}
+
+.update__form > *{
+    margin-bottom: 20px;
+}

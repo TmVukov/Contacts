@@ -1,0 +1,18 @@
+@import '../../styles/mixins.scss';
+
+.dashboard__container{
+   @include container;
+}
+
+
+.dashboard__btn-logout,
+.dashboard__link-contacts{
+     @include link;
+}
+
+.dashboard__container p{
+    color: white;
+}
+
+
+
