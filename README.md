@@ -1,8 +1,8 @@
 ## Basic Info
 
-Link to the project: https://tmvukov.github.io/contacts/
+Link to the project is in the About section.
 
-App includes some basic crud operations and little bit more. 
+This app includes some basic crud operations and little bit more. 
 
 Password should contain: at least 6 characters, 1 number and 1 special character: +, -, !, #, $
 
