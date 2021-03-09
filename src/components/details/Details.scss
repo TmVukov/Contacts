@@ -9,8 +9,12 @@
 }
 
 .details__container button{
+    @include button;
     margin-top: 20px;
-    cursor: pointer;
+}
+
+.details__container button:hover{
+    @include hover;
 }
 
 .details__table{

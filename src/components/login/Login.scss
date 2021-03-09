@@ -5,8 +5,19 @@
 }
 
 .login__form{
-    @include form;
-    width: 200px;    
+    @include form;       
+}
+
+.login__form input{
+    @include input;
+}
+
+.login__form button{
+    @include button;
+}
+
+.login__form button:hover{
+    @include hover;
 }
 
 .login__form > * {

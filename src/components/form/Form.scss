@@ -1,23 +1,47 @@
 @import '../../styles/mixins.scss'; 
 
+.form__container input{
+    @include input;
+}
+
 .form__info{
-    @include form;
+    @include form; 
 }
 
 .form__info > *{
     margin-bottom: 20px;
 }
 
+.form__info button{
+    @include button;
+}
+
+.form__info button:hover{
+    @include hover;
+}
+
+.form__info button:disabled{
+    @include disabled;
+}
+
+.form__button-enter{    
+    margin-bottom: 20px !important;    
+}
+
 .form__date{
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;    
 }
 
 .form__date label{
     font-size: 12px;
     margin-bottom: 5px;
 } 
+
+.form__date input{    
+    @include input
+}
 
 .form__container p{
     color:  black;

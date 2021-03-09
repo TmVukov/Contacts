@@ -68,7 +68,7 @@ export default function Form() {
             { mobile && !isMobValid ? <p>Mobile format is invalid!</p> : '' }
             { phone && !isPhoneValid ? <p>Phone format is invalid!</p> : '' }
 
-            <form onSubmit={addContact} ref={formRef} className='form__info'>
+            <form onSubmit={addContact} ref={formRef} className='form__info'> 
 
                 <input 
                     onChange={e=>setName(e.target.value)} 
@@ -94,7 +94,7 @@ export default function Form() {
 
               
 
-                <button onClick={()=>setOpen(!open)}>Enter contacts</button>
+                <button onClick={()=>setOpen(!open)} className='form__button-enter'>Enter contacts</button>
 
                 { open && <SubForm/> }                           
                               

@@ -7,7 +7,7 @@ import axios from 'axios'
 import { axiosInstance } from '../../utils/axios'
 
 export default function Update() {
-    const [error, setError] = useState('')
+    const [error, setError] = useState('') 
     const [updated, setUpdated] = useState(false)    
     const sessionId = JSON.parse(sessionStorage.getItem('id')) 
 
@@ -25,8 +25,8 @@ export default function Update() {
     const isMobValid = mobile?.match(mobileReg) || mobile === undefined 
 
     const phoneReg = /^[0][1]\s\d{3,4}\s\d{3}|[0][2-5][0-9]\s\d{3,4}\s\d{3}$/
-    const isPhoneValid = phone?.match(phoneReg) || phone === undefined    
-    
+    const isPhoneValid = phone?.match(phoneReg) || phone === undefined   
+    console.log(mobile)
     
     useEffect(() => {
        const singleContact = axios.get(

@@ -8,14 +8,22 @@
 }
 
 .subform__mobile,
-.subform__phone{
+.subform__phone{    
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
 
-.subform__mobile label,
-.subform__phone label{
+
+:is(.subform__mobile, .subform__phone) label{
     font-size: 12px;
     margin-bottom: 5px;
+}
+
+:is(.subform__mobile, .subform__phone) input{
+    width: 91%;
+}
+
+.subform__email{
+    margin-top: 15px;
 }

@@ -12,6 +12,22 @@
     @include form;
 }
 
+.update__form input{
+    @include input;
+}
+
+.update__form button{
+    @include button;
+}
+
+.update__form button:hover{
+    @include hover;
+}
+
+.update__form button:disabled{
+    @include disabled;
+}
+
 .update__form > *{
     margin-bottom: 20px;
-}
+} 

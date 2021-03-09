@@ -42,9 +42,7 @@ export default function Details() {
                 <Link to='/contacts' className='details__link home'>contacts</Link>
                 <Link to='/favorites' className='details__link favorites'>favorites</Link>
                 <Link to='/update' className='details__link update'>update</Link>
-            </Header>
-
-            <button onClick={deleteContact}>Delete Contact</button>                             
+            </Header>                                      
                 
             {
                 error ? <p>{error}</p> :
@@ -65,6 +63,8 @@ export default function Details() {
                         </section>                
                     )
             }
+
+            <button onClick={deleteContact}>Delete Contact</button>   
           
         </div>
     )

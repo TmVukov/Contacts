@@ -4,10 +4,21 @@
     @include link;
 }
 
+
 .signup__form{
-    @include form;
-    width: 200px;
-    
+    @include form;        
+}
+
+.signup__form input{
+    @include input;
+}
+
+.signup__form button{
+    @include button;
+}
+
+.signup__form button:hover{
+    @include hover;
 }
 
 .signup__form > * {

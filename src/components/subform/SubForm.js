@@ -34,6 +34,7 @@ export default function SubForm() {
 
             <input 
                 onChange={e=>setEmail(e.target.value)} 
+                className='subform__email'
                 type='email' 
                 placeholder='Enter email'                                 
                 required
