@@ -4,8 +4,21 @@
     @include link;
 }
 
+.login__container p{
+    @include link;
+    margin-top: 20px;
+}
+
+.loader{
+    margin-top: 100px;
+}
+
+.login__container main{
+    @include home__main
+}
+
 .login__form{
-    @include form;       
+    @include home__form;       
 }
 
 .login__form input{

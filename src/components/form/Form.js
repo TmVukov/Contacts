@@ -63,12 +63,21 @@ export default function Form() {
 
 
     return (
-        <div className='form__container'>
-            { added ? <p>Contact is saved!</p> : ''}
-            { mobile && !isMobValid ? <p>Mobile format is invalid!</p> : '' }
-            { phone && !isPhoneValid ? <p>Phone format is invalid!</p> : '' }
+        <div className='form__container'>            
 
             <form onSubmit={addContact} ref={formRef} className='form__info'> 
+
+            { added ? <div className='form__message success'>Contact is saved!</div> : ''}
+
+            { 
+                mobile && !isMobValid ? 
+                <div className='form__message error'>Mobile format is invalid!</div> : '' 
+            }
+            
+            { 
+                phone && !isPhoneValid ? 
+                <div className='form__message error'>Phone format is invalid!</div> : '' 
+            }
 
                 <input 
                     onChange={e=>setName(e.target.value)} 
@@ -76,8 +85,7 @@ export default function Form() {
                     placeholder='Enter name'
                     maxLength='100' 
                     required
-                /> 
-                
+                />                
                 
                 <input 
                     onChange={e=>setSurname(e.target.value)} 

@@ -7,6 +7,8 @@ import { useHistory, Link } from 'react-router-dom'
 import axios from 'axios'
 import Header from '../header/Header'
 import Form from '../form/Form'
+import Main from '../main/Main'
+import Footer from '../footer/Footer'
 
 export default function Dashboard() {  
     
@@ -38,6 +40,7 @@ export default function Dashboard() {
 
     return (
         <section className='dashboard__container'>
+
             <Header>
                 <p>Welcome {username}!</p> 
                 
@@ -46,7 +49,12 @@ export default function Dashboard() {
                 <button onClick={handleLogout} className='dashboard__btn-logout'>log out</button>                               
             </Header>
 
-            <Form/>
+            <Main>
+                <Form/>
+            </Main>
+
+            <Footer/>
+            
         </section>
     )
 }

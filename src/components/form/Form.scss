@@ -43,6 +43,19 @@
     @include input
 }
 
-.form__container p{
-    color:  black;
+.form__message{
+    margin-top: 10px;    
+    padding: 3px 10px;
+    border-radius: 10px;
+    color: $color-font;
+    font-weight: 400;
 }
+
+.success{
+    background: $color-main;
+}
+
+.error{
+    background: crimson
+}
+ 

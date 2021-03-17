@@ -4,12 +4,12 @@
     @include container;
 }
 
-.contacts__link{
-    @include link;
+.contacts__container input{
+    @include input;    
 }
 
-.contacts__table{
-    margin-top: 50px;
+.contacts__link{
+    @include link;
 }
 
 .contacts__table, tr, td{
@@ -27,7 +27,7 @@
 }
 
 .contacts__sort p{
-    color: white;
+    color: $color-font;
     margin-right: 5px;
 }
 

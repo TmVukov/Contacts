@@ -1,21 +1,72 @@
-@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Oi&display=swap');
 @import '../../styles/mixins.scss'; 
 
-.home__logo{   
-    font-family: 'Black Han Sans', sans-serif;
-    color: white;
-    font-size: 50px;
+.home__container{ 
+    width: 100%;   
+    min-height: 100vh;
+    background: url('../../assets/cover-image.jpg') no-repeat center 90%;   
+}
+
+.home__container h1, 
+.home__container h2{
+    color: $color-font;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.home__container h1{   
+    font-weight: 900;
+    font-style: italic;
+    font-size: 70px;
+}
+
+.home__container h2{    
+    font-size: 30px;
+    font-weight: 300;
+}
+
+.home__header{
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 50px;
+    align-items: center;
+}
+
+.home__logo{
+    font-size: 40px;
+    color: $color-font;
+}
+
+.home__header button{
+    all: unset;
+    border: 2px solid $color-font;
+    border-radius: 10px;
+    padding: 10px;
+    color: $color-font;    
+    transition: all .2s;
+    cursor: pointer;
+}
+
+
+.home__titles{
+    margin-top: 200px
 }
 
 .home__links{    
     display: flex;
-    justify-content: space-between;
-    width: 150px;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 250px;
 }
 
 .home__links > *{
-    @include link;
+    @include link;   
 }
+
+
+
+
+
+
 
 
 

@@ -5,6 +5,8 @@ import { extractDataFromObject } from '../../utils/utils'
 import { Link } from 'react-router-dom'
 import { getId } from '../../utils/utils'
 import axios from 'axios'
+import Main from '../main/Main'
+import Footer from '../footer/Footer'
 
 export default function Favorites() {
     const [favorites, setFavorites] = useState([])
@@ -35,37 +37,43 @@ export default function Favorites() {
             </Header>
 
 
-            <table className='favorites__table'>
-                <tbody>
-                    <tr>
-                        <th>Name</th>
-                        <th>Surname</th>
-                        <th>Email</th>                        
-                    </tr>
-                    {                  
-                       favorites.map((contact,i)=>                                
-                                <tr key={i}>
-                                     <td>
-                                        <Link to={`/details/${contact.id}`} onClick={()=>getId(contact.id)}>
-                                            {contact.name}
-                                        </Link>
-                                    </td>
-                                    <td>
-                                        <Link to={`/details/${contact.id}`} onClick={()=>getId(contact.id)}>
-                                            {contact.surname}
-                                        </Link>
-                                    </td>
-                                    <td>
-                                        <Link to={`/details/${contact.id}`} onClick={()=>getId(contact.id)}>
-                                            {contact.email}
-                                        </Link>
-                                    </td>                                      
-                                </tr>                                                                             
-                            )                    
-                    }
+            <Main>
 
-                </tbody>   
-            </table>   
+                <table className='favorites__table'>
+                    <tbody>
+                        <tr>
+                            <th>Name</th>
+                            <th>Surname</th>
+                            <th>Email</th>                        
+                        </tr>
+                        {                  
+                        favorites.map((contact,i)=>                                
+                                    <tr key={i}>
+                                        <td>
+                                            <Link to={`/details/${contact.id}`} onClick={()=>getId(contact.id)}>
+                                                {contact.name}
+                                            </Link>
+                                        </td>
+                                        <td>
+                                            <Link to={`/details/${contact.id}`} onClick={()=>getId(contact.id)}>
+                                                {contact.surname}
+                                            </Link>
+                                        </td>
+                                        <td>
+                                            <Link to={`/details/${contact.id}`} onClick={()=>getId(contact.id)}>
+                                                {contact.email}
+                                            </Link>
+                                        </td>                                      
+                                    </tr>                                                                             
+                                )                    
+                        }
+
+                    </tbody>   
+                </table>
+                 
+            </Main>
+
+            <Footer/>  
 
         </div>
     )

@@ -6,6 +6,8 @@ import { Link, useHistory } from 'react-router-dom'
 import { axiosInstance } from '../../utils/axios'
 import Loader from "react-loader-spinner"
 import Header from '../header/Header'
+import Footer from '../footer/Footer'
+import { IoMdContact } from 'react-icons/io'
 
 export default function SignUp() {
     const [email, setEmail] = useState('')
@@ -45,30 +47,31 @@ export default function SignUp() {
         .then(res=>console.log(res))        
         .catch(err=>console.log(err))
             
-    }
+    } 
 
     return (
-        <div>
+        <div className='signup__container'>
+
+            <Header>
+                <Link to='/home'><IoMdContact className='home__logo'/></Link>
+                <Link to='/login'>log in</Link>
+            </Header>
            
+           <main>
+
             {
-                error && loading ? 
+                    error && loading ? 
 
-                <>
-                    <p>{error}</p>
-                    <p>Please refresh the page.</p>
-                </>  :
+                    <>
+                        <p>{error}</p>
+                        <p>Please refresh the page.</p>
+                    </>  :
 
-                loading ?
+                    loading ?
 
-                <Loader type="Oval" color="#191970" height={80} width={80}/> :
-               
-               
-               <div className='signup__container'>
-                    <Header>
-                        <Link to='/home'>home</Link>
-                        <Link to='/login'>log in</Link>
-                    </Header>           
-           
+                    <Loader className='loader' type="Oval" color="#C7E2F7" height={80} width={80}/> :               
+                                              
+            
                     <form onSubmit={handleSubmit} className='signup__form'> 
 
                         <input 
@@ -93,10 +96,13 @@ export default function SignUp() {
                         />               
                                         
                         <button>Submit</button>
-                    </form>
+                    </form>                       
                     
-                </div>
-            }
+                }
+
+           </main>
+           
+           <Footer/>
             
         </div>
     )

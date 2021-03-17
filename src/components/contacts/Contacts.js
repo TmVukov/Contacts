@@ -10,6 +10,8 @@ import { Link } from 'react-router-dom'
 import Loader from "react-loader-spinner"
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai'
 import Pagination from '../pagination/Pagination'
+import Main from '../main/Main'
+import Footer from '../footer/Footer'
 
 export default function Contacts() {    
     const [loading, setLoading] = useState(false)
@@ -101,64 +103,70 @@ export default function Contacts() {
                 </div>
             </Header> 
 
-            {
-                loading ? <Loader type="Oval" color="#191970" height={80} width={80}/> :
-                error ? <p>{error}</p> : ''
-            }            
+            <Main>
+                
+                {
+                    loading ? <Loader type="Oval" color="##004890" height={80} width={80}/> :
+                    error ? <p>{error}</p> : ''
+                }            
+                
             
-           
-            <table className='contacts__table'>
-                <tbody>
-                    <tr>
-                        <th>Name</th>
-                        <th>Surname</th>
-                        <th>Email</th>
-                        <th>Star</th>
-                    </tr>
-                    {                  
-                        /* contacts && */ currentContacts
-                            .filter((contact)=>{                                                         
-                                if(!search.length) return contact                                                         
-                                return Object.values(contact).includes(search)                         
-                            }) 
-                            .sort((a,b)=>{                                
-                                if(selectedValue === 'a-z') return a.surname > b.surname ? 1 : -1                               
-                                return a.surname < b.surname ? 1 : -1                              
-                            })                                                                           
-                            .map((contact,i)=>                                
-                                <tr key={i}>
-                                    <td>
-                                        <Link to={`/details/${contact.id}`} onClick={()=>getId(contact.id)}>
-                                            {contact.name}
-                                        </Link>
-                                    </td>
-                                    <td>
-                                        <Link to={`/details/${contact.id}`} onClick={()=>getId(contact.id)}>
-                                            {contact.surname}
-                                        </Link>
-                                    </td>
-                                    <td>
-                                        <Link to={`/details/${contact.id}`} onClick={()=>getId(contact.id)}>
-                                            {contact.email}
-                                        </Link>
-                                    </td> 
-                                    <td>
-                                        {
-                                            contact.favorite ?                                   
-                                            
-                                            <AiFillStar onClick={()=>handleFavorite(contact.id)}/>  :
+                <table className='contacts__table'>
+                    <tbody>
+                        <tr>
+                            <th>Name</th>
+                            <th>Surname</th>
+                            <th>Email</th>
+                            <th>Star</th>
+                        </tr>
+                        {                  
+                            currentContacts
+                                .filter((contact)=>{                                                     
+                                    if(!search.length) return contact                                                         
+                                    return Object.values(contact).includes(search)                         
+                                }) 
+                                .sort((a,b)=>{                                
+                                    if(selectedValue === 'a-z') return a.surname > b.surname ? 1 : -1                               
+                                    return a.surname < b.surname ? 1 : -1                              
+                                })                                                                           
+                                .map((contact,i)=>                                
+                                    <tr key={i}>
+                                        <td>
+                                            <Link to={`/details/${contact.id}`} onClick={()=>getId(contact.id)}>
+                                                {contact.name}
+                                            </Link>
+                                        </td>
+                                        <td>
+                                            <Link to={`/details/${contact.id}`} onClick={()=>getId(contact.id)}>
+                                                {contact.surname}
+                                            </Link>
+                                        </td>
+                                        <td>
+                                            <Link to={`/details/${contact.id}`} onClick={()=>getId(contact.id)}>
+                                                {contact.email}
+                                            </Link>
+                                        </td> 
+                                        <td>
+                                            {
+                                                contact.favorite ?                                   
+                                                
+                                                <AiFillStar onClick={()=>handleFavorite(contact.id)}/>  :
 
-                                            <AiOutlineStar onClick={()=>handleFavorite(contact.id)}/>                                   
-                                        }
-                                    </td>
-                                </tr>                                                                             
-                            )                    
-                    }
+                                                <AiOutlineStar onClick={()=>handleFavorite(contact.id)}/>                                   
+                                            }
+                                        </td>
+                                    </tr>                                                                             
+                                )                    
+                        }
 
-                </tbody>   
-            </table> 
+                    </tbody>   
+                </table> 
 
-            <Pagination/>            
+                <Pagination/> 
+
+            </Main>
+
+            <Footer/>           
         </div>
     )
 }

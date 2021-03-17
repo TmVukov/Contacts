@@ -4,9 +4,21 @@
     @include link;
 }
 
+.signup__container p{
+    @include link;
+    margin-top: 20px;
+}
+
+.loader{
+    margin-top: 100px;
+}
+
+.signup__container main{
+    @include home__main
+}
 
 .signup__form{
-    @include form;        
+    @include home__form       
 }
 
 .signup__form input{

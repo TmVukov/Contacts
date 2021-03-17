@@ -1,25 +1,27 @@
 import React from 'react'
 import './Homepage.scss'
 import { Link } from 'react-router-dom'
-import Header from '../header/Header'
+import { IoMdContact } from 'react-icons/io'
 
 
 export default function Homepage() {    
 
     return (
-        <section>
+        <section className='home__container'>
 
-            <Header className='home__header'>
-                <div className='home__logo'>
-                    My Contacts
-                </div>
-
+            <header className='home__header'>
+                <IoMdContact className='home__logo'/>
 
                 <div className='home__links'>
-                    <Link to='/signup' >sign up</Link>
+                    <Link to='/signup' ><button>register</button></Link>
                     <Link to='/login'>log in</Link>
                 </div>                           
-            </Header>
+            </header> 
+
+           <div className='home__titles'>
+                <h1>Add your contacts</h1>          
+                <h2>Fast and easy</h2> 
+            </div>         
            
         </section>
     )

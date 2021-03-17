@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom'
 import { StateContext } from '../../utils/stateProvider'
 import axios from 'axios'
 import { axiosInstance } from '../../utils/axios'
+import Main from '../main/Main'
+import Footer from '../footer/Footer'
 
 export default function Update() {
     const [error, setError] = useState('') 
@@ -72,72 +74,93 @@ export default function Update() {
             })
             .catch(err=>setError(err))        
     } 
-    
+    console.log(contacts)
     
     return (
         <div className='update__container'>
+
             <Header>
                 <Link to={`/details/${sessionId}`}>details</Link>
             </Header>
 
-            { updated && <p>Contact is updated!</p>}
-            { error && <p>{error}</p>}
-            { mobile && !isMobValid ? <p>Mobile format is invalid!</p> : '' }
-            { phone && !isPhoneValid ? <p>Phone format is invalid!</p> : '' }
+            <Main>
 
-            {
-                contacts.map((contact,i)=>                             
-                 <form onSubmit={updateContact} key={i} className='update__form'>
+                { updated && <div className='update__message success'>Contact is updated!</div>}
 
-                     <input 
-                        onChange={e=>setName(e.target.value)} 
-                        defaultValue={contact.name} 
-                        placeholder='Update name'
-                        type='text'
-                     />
+                { error && <div className='update__message error'>{error}</div>}
 
-                     <input 
-                        onChange={e=>setSurname(e.target.value)} 
-                        defaultValue={contact.surname} 
-                        placeholder='Update surname'
-                        type='text'
-                     />
+                { 
+                    mobile && !isMobValid ? 
+                    <div className='update__message error'>Mobile format is invalid!</div> : '' 
+                }
 
-                     <input 
-                        onChange={e=>setEmail(e.target.value)} 
-                        defaultValue={contact.email} 
-                        placeholder='update email'
-                        type='email'
-                     />
+                { 
+                    phone && !isPhoneValid ? 
+                    <div className='update__messageerror'>Phone format is invalid!</div> : '' 
+                }
 
-                    <div className='subform__mobile'>
-                        <label>Mobile format: 09x xxx(x) xxx</label>
+                {
+                    !contacts[0] ? <p>Sorry, your contact is deleted.</p>
+
+                    : 
+
+                    contacts.map((contact,i)=>                             
+                    <form onSubmit={updateContact} key={i} className='update__form'>
+
                         <input 
-                            onChange={e=>setMobile(e.target.value)}
-                            defaultValue={contact.mobile}                            
-                            type='tel' 
-                            placeholder='Enter mobile'
-                            maxLength='12'  
-                            
+                            onChange={e=>setName(e.target.value)} 
+                            defaultValue={contact.name} 
+                            placeholder='Update name'
+                            type='text'
                         />
-                    </div>
 
-                    <div className='subform__phone'>
-                            <label>Phone format: 0(xx) xxx(x) xxx</label>
+                        <input 
+                            onChange={e=>setSurname(e.target.value)} 
+                            defaultValue={contact.surname} 
+                            placeholder='Update surname'
+                            type='text'
+                        />
+
+                        <input 
+                            onChange={e=>setEmail(e.target.value)} 
+                            defaultValue={contact.email} 
+                            placeholder='update email'
+                            type='email'
+                        />
+
+                        <div className='subform__mobile'>
+                            <label>Mobile format: 09x xxx(x) xxx</label>
                             <input 
-                                onChange={e=>setPhone(e.target.value)}
-                                defaultValue={contact.phone}                                     
+                                onChange={e=>setMobile(e.target.value)}
+                                defaultValue={contact.mobile}                            
                                 type='tel' 
-                                placeholder='Enter phone' 
-                                maxLength='12'                                    
+                                placeholder='Enter mobile'
+                                maxLength='12'  
+                                
                             />
-                    </div>
+                        </div>
 
-                     <button disabled={!isMobValid || !isPhoneValid ? true : false}>Update contact</button>                  
+                        <div className='subform__phone'>
+                                <label>Phone format: 0(xx) xxx(x) xxx</label>
+                                <input 
+                                    onChange={e=>setPhone(e.target.value)}
+                                    defaultValue={contact.phone}                                     
+                                    type='tel' 
+                                    placeholder='Enter phone' 
+                                    maxLength='12'                                    
+                                />
+                        </div>
 
-                 </form>                               
-                )
-            }
+                        <button disabled={!isMobValid || !isPhoneValid ? true : false}>Update contact</button>                  
+
+                    </form>                               
+                    )
+                }
+
+            </Main>
+
+            <Footer/>
+
         </div>
     )
 }

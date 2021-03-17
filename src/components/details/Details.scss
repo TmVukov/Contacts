@@ -4,13 +4,13 @@
     @include container;
 }
 
+
 .details__container a{
     @include link;
 }
 
 .details__container button{
-    @include button;
-    margin-top: 20px;
+    @include button;    
 }
 
 .details__container button:hover{

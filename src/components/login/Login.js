@@ -4,6 +4,8 @@ import { auth } from '../../utils/firebase'
 import { Link, useHistory } from 'react-router-dom'
 import Loader from "react-loader-spinner"
 import Header from '../header/Header'
+import Footer from '../footer/Footer'
+import { IoMdContact } from 'react-icons/io'
 
 
 export default function LogIn() {
@@ -32,31 +34,47 @@ export default function LogIn() {
     
 
     return (
-        <div>     
+        <div className='login__container'> 
+            <Header>
+                <Link to='/home'><IoMdContact className='home__logo'/></Link>
+                <Link to='/signup'>sign up</Link>
+            </Header>    
             
-            {
-                error && loading ? 
+            <main>
 
-                <p>{error} Please refresh the page.</p> :
+                {
+                    error && loading ? 
 
-                loading ?
+                    <p>{error} Please refresh the page.</p> :
 
-                <Loader type="Oval" color="#191970" height={80} width={80}/> :                
+                    loading ?
 
-                <div className='login__container'>
-                    <Header>
-                        <Link to='/home'>home</Link>
-                        <Link to='/signup'>sign up</Link>
-                    </Header>
-                    
+                    <Loader className='loader' type="Oval" color="#C7E2F7" height={80} width={80}/> :                   
+                        
                     <form onSubmit={handleSubmit} className='login__form'>
-                    <input onChange={e=>setEmail(e.target.value)} type='email' placeholder='Enter email' required/>
-                    <input onChange={e=>setPassword(e.target.value)} type='password' placeholder='Enter password' required/>                
-                    <button>Submit</button>
-                </form>
 
-                </div>
-            }
+                        <input 
+                            onChange={e=>setEmail(e.target.value)} 
+                            type='email' 
+                            placeholder='Enter email' 
+                            required
+                        />
+
+                        <input 
+                            onChange={e=>setPassword(e.target.value)} 
+                            type='password' 
+                            placeholder='Enter password' 
+                            required
+                        />
+
+                        <button>Submit</button>
+
+                    </form>               
+                }
+
+            </main>
+
+            <Footer/>
             
         </div>
     )

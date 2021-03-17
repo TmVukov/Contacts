@@ -3,7 +3,9 @@ import './Details.scss'
 import Header from '../header/Header'
 import { Link } from 'react-router-dom'
 import { StateContext } from '../../utils/stateProvider'
-import axios from 'axios'
+import axios from 'axios' 
+import Main from '../main/Main'
+import Footer from '../footer/Footer'
 
 
 export default function Details() {
@@ -38,33 +40,44 @@ export default function Details() {
 
     return (
         <div className='details__container'>
+            
             <Header>
                 <Link to='/contacts' className='details__link home'>contacts</Link>
                 <Link to='/favorites' className='details__link favorites'>favorites</Link>
                 <Link to='/update' className='details__link update'>update</Link>
-            </Header>                                      
-                
-            {
-                error ? <p>{error}</p> :
-            
-                sessionId && contacts.map((contact,i)=>                 
-                        <section key={i}>
-                            <table className='details__table'>
-                            <tbody>
-                                    <tr><th>Contact Details</th></tr>
-                                    <tr><td>Name: {contact.name}</td></tr>   
-                                    <tr><td>Surname: {contact.surname}</td></tr>   
-                                    <tr><td>Email: {contact.email}</td></tr>   
-                                    <tr><td>Mob: {contact.mobile}</td></tr>   
-                                    <tr><td>Phone: {contact.phone}</td></tr>                           
-                                    <tr><td>Birthdate: {contact.birthDate}</td></tr>                           
-                            </tbody>                            
-                            </table>
-                        </section>                
-                    )
-            }
+            </Header>   
 
-            <button onClick={deleteContact}>Delete Contact</button>   
+            <Main>
+
+                <button onClick={deleteContact}>Delete Contact</button>                                   
+                    
+                {
+                    error ? <p>{error}</p> :
+
+                    !contacts[0] ? <p>Your contact is deleted.</p>
+
+                    : 
+                
+                    sessionId && contacts.map((contact,i)=>                 
+                            <section key={i}>
+                                <table className='details__table'>
+                                <tbody>
+                                        <tr><th>Contact Details</th></tr>
+                                        <tr><td>Name: {contact.name}</td></tr>   
+                                        <tr><td>Surname: {contact.surname}</td></tr>   
+                                        <tr><td>Email: {contact.email}</td></tr>   
+                                        <tr><td>Mob: {contact.mobile}</td></tr>   
+                                        <tr><td>Phone: {contact.phone}</td></tr>                           
+                                        <tr><td>Birthdate: {contact.birthDate}</td></tr>                           
+                                </tbody>                            
+                                </table>
+                            </section>                
+                        )
+                }                   
+                
+            </Main>           
+
+            <Footer/>  
           
         </div>
     )

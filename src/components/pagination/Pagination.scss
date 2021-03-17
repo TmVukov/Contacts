@@ -1,8 +1,10 @@
+@import '../../styles/variables.scss'; 
+
 .pagination__container{
     display: flex;
     flex-direction: column;
-    margin: 50px auto;
-    width: 40%;    
+    margin: 20px auto;
+    width: 40%;       
     display: flex;
     place-items: center;  
     
@@ -22,7 +24,7 @@
     place-items: center;
     width: 30px;
     height: 30px;
-    border: 1px solid midnightblue;
+    border: 1px solid $color-main;
     border-radius: 30px;       
 }
 
