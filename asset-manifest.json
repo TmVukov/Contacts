@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/Contacts/static/css/main.3470e7f2.chunk.css",
-    "main.js": "/Contacts/static/js/main.41e782bb.chunk.js",
-    "main.js.map": "/Contacts/static/js/main.41e782bb.chunk.js.map",
+    "main.css": "/Contacts/static/css/main.93896eca.chunk.css",
+    "main.js": "/Contacts/static/js/main.de7f0eb1.chunk.js",
+    "main.js.map": "/Contacts/static/js/main.de7f0eb1.chunk.js.map",
     "runtime-main.js": "/Contacts/static/js/runtime-main.494ec041.js",
     "runtime-main.js.map": "/Contacts/static/js/runtime-main.494ec041.js.map",
     "static/js/2.bc001723.chunk.js": "/Contacts/static/js/2.bc001723.chunk.js",
     "static/js/2.bc001723.chunk.js.map": "/Contacts/static/js/2.bc001723.chunk.js.map",
     "index.html": "/Contacts/index.html",
-    "static/css/main.3470e7f2.chunk.css.map": "/Contacts/static/css/main.3470e7f2.chunk.css.map",
+    "static/css/main.93896eca.chunk.css.map": "/Contacts/static/css/main.93896eca.chunk.css.map",
     "static/js/2.bc001723.chunk.js.LICENSE.txt": "/Contacts/static/js/2.bc001723.chunk.js.LICENSE.txt",
     "static/media/Footer.scss": "/Contacts/static/media/cover-image.d6eacf85.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.494ec041.js",
     "static/js/2.bc001723.chunk.js",
-    "static/css/main.3470e7f2.chunk.css",
-    "static/js/main.41e782bb.chunk.js"
+    "static/css/main.93896eca.chunk.css",
+    "static/js/main.de7f0eb1.chunk.js"
   ]
 }
