@@ -19,7 +19,7 @@ export default function Homepage() {
             </header> 
 
            <div className='home__titles'>
-                <h1>Add your contacts</h1>          
+                <h1>Save your contacts</h1>          
                 <h2>Fast and easy</h2> 
             </div>         
            
