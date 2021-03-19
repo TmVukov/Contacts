@@ -38,3 +38,11 @@
 }
 
 
+@media(max-height:900px){
+    .login__container main{        
+        min-height: calc(100vh - 120px) !important;  
+        margin-top: 60px;
+    }
+}
+
+

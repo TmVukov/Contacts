@@ -26,5 +26,9 @@
 }
 
 
-
+@media(max-height:900px){
+    .details__container button{
+        padding: 7px 10px !important;
+    }
+}
 

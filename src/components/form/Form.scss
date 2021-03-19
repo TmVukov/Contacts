@@ -58,4 +58,15 @@
 .error{
     background: crimson
 }
+
+
+@media(max-height:900px){
+    .form__container input{
+        padding: 7px 10px !important;
+    }
+
+    .form__info button{
+        padding: 7px 10px !important;
+    }
+}
  

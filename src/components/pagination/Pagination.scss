@@ -44,3 +44,12 @@
 .pagination__sort p{
     margin-right: 5px;
 }
+
+
+@media(max-height:900px){
+    .pagination__num{        
+        width: 25px;
+        height: 25px;        
+        border-radius: 25px;       
+    }
+}

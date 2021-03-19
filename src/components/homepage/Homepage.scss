@@ -2,7 +2,7 @@
 
 .home__container{ 
     width: 100%;   
-    min-height: 100vh;
+    height: 100vh;
     background: url('../../assets/cover-image.jpg') no-repeat center 90%;   
 }
 
@@ -60,6 +60,19 @@
 
 .home__links > *{
     @include link;   
+}
+
+
+
+
+@media(max-height:900px){
+    .home__container{        
+        background: url('../../assets/cover-image.jpg') no-repeat center 65%;        
+    }
+
+    .home__titles{
+        margin-top: 100px
+    }
 }
 
 

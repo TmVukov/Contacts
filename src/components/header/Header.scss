@@ -10,3 +10,13 @@
     height: 100px;    
     background: url('../../assets/cover-image.jpg') no-repeat center 68%;  
 }
+
+
+
+
+@media(max-height:900px){
+    .header{
+        background: url('../../assets/cover-image.jpg') no-repeat center 68.5%; 
+        height: 60px;
+    }
+}

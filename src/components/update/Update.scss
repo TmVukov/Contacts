@@ -47,3 +47,14 @@
 .error{
     background: crimson;
 }
+
+
+@media(max-height:900px){
+    .update__form input{
+        padding: 7px 10px !important;
+    }
+
+    .update__form button{
+        padding: 7px 10px !important;
+    }
+}

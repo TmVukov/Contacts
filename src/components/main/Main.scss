@@ -6,3 +6,10 @@
     min-height: calc(100vh - 200px);  
     margin-top: 150px;
 }
+
+
+@media(max-height:900px){
+    .main{
+        margin-top: 120px;
+    }
+}

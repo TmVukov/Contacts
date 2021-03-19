@@ -31,3 +31,16 @@
     margin-right: 5px;
 }
 
+
+@media(max-height:900px){
+    .contacts__table, th, tr, td{
+        padding: 5px !important;
+        font-size: 14px !important;
+     }
+
+     .contacts__container input{
+        padding: 5px 10px !important;   
+    }
+     
+} 
+

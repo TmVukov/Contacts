@@ -25,3 +25,10 @@
 .subform__email{
     margin-top: 15px;
 }
+
+
+@media(max-height:900px){
+    .subform__contacts > * {
+        margin-bottom: 15px; 
+    }
+}

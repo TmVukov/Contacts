@@ -11,3 +11,11 @@
     color: $color-font;   
     background: url('../../assets/cover-image.jpg') no-repeat center 94.5%;  
 }
+
+
+@media(max-height:900px){
+    .footer{
+        background: url('../../assets/cover-image.jpg') no-repeat center 93%; 
+        height: 60px;
+    }
+}
