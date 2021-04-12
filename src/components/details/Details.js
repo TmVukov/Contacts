@@ -3,7 +3,7 @@ import './Details.scss'
 import Header from '../header/Header'
 import { Link } from 'react-router-dom'
 import { StateContext } from '../../utils/stateProvider'
-import axios from 'axios' 
+import { axiosInstance } from '../../utils/axios'
 import Main from '../main/Main'
 import Footer from '../footer/Footer'
 
@@ -14,14 +14,14 @@ export default function Details() {
     const sessionId = JSON.parse(sessionStorage.getItem('id')) 
     
 
-    useEffect(() => {
-       const detail =  axios.get(
-            `https://contacts-d9f0b-default-rtdb.europe-west1.firebasedatabase.app/contacts/${sessionId}.json`)
+    useEffect(() => {    
+       const detail =  axiosInstance.get(
+            `contacts/${sessionId}.json`)
         .then(resp=>{            
             console.log(resp.data)                   
             setContacts([resp.data])            
         })
-        .catch(err=>setError(err))
+        .catch(err=>setError(err)) 
         
         return detail
         
@@ -30,8 +30,8 @@ export default function Details() {
    
     
     const deleteContact = () =>{       
-        axios.delete(
-            `https://contacts-d9f0b-default-rtdb.europe-west1.firebasedatabase.app/contacts/${sessionId}.json`)
+        axiosInstance.delete(
+            `contacts/${sessionId}.json`)
         .then(resp=>{
             console.log(resp)
             setContacts([])

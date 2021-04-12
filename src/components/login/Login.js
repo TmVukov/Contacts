@@ -27,8 +27,13 @@ export default function LogIn() {
         })
         .catch(()=>{
             setError('Failed to log in!')
+            setLoading(false)
+
+            setTimeout(() => {
+                setError("");
+              }, 2000);
         }) 
-        
+       
         sessionStorage.setItem('user', JSON.stringify(email))
     }   
     
@@ -42,16 +47,16 @@ export default function LogIn() {
             
             <main>
 
-                {
-                    error && loading ? 
-
-                    <p>{error} Please refresh the page.</p> :
-
+                {                   
                     loading ?
 
-                    <Loader className='loader' type="Oval" color="#C7E2F7" height={80} width={80}/> :                   
+                    <Loader className='loader' type="Oval" color="#C7E2F7" height={80} width={80}/> : 
+                    
+                    
                         
-                    <form onSubmit={handleSubmit} className='login__form'>
+                    <form onSubmit={handleSubmit} className='login__form'>                        
+
+                        {error && <p>{error} Please try again.</p>} 
 
                         <input 
                             onChange={e=>setEmail(e.target.value)} 

@@ -4,7 +4,6 @@ import Header from '../header/Header'
 import { StateContext } from '../../utils/stateProvider'
 import { extractDataFromObject } from '../../utils/utils'
 import { getId } from '../../utils/utils'
-import axios from 'axios'
 import { axiosInstance } from '../../utils/axios'
 import { Link } from 'react-router-dom'
 import Loader from "react-loader-spinner"
@@ -29,8 +28,8 @@ export default function Contacts() {
     useEffect(() => {
         setLoading(true)
 
-        const fetchedContacts = axios.get(
-            'https://contacts-d9f0b-default-rtdb.europe-west1.firebasedatabase.app/contacts.json')
+        const fetchedContacts = axiosInstance.get(
+            'contacts.json')
         .then(resp=>{            
             const props = extractDataFromObject(resp)
             const sorted = props.sort((a,b)=>a.surname > b.surname ? 1 : -1)

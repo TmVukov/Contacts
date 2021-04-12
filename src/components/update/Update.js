@@ -3,7 +3,6 @@ import './Update.scss'
 import Header from '../header/Header'
 import { Link } from 'react-router-dom'
 import { StateContext } from '../../utils/stateProvider'
-import axios from 'axios'
 import { axiosInstance } from '../../utils/axios'
 import Main from '../main/Main'
 import Footer from '../footer/Footer'
@@ -31,8 +30,8 @@ export default function Update() {
     console.log(mobile)
     
     useEffect(() => {
-       const singleContact = axios.get(
-            `https://contacts-d9f0b-default-rtdb.europe-west1.firebasedatabase.app/contacts/${sessionId}.json`)
+       const singleContact = axiosInstance.get(
+            `contacts/${sessionId}.json`)
         .then(resp=>{            
             console.log(resp.data)         
             setContacts([resp.data])
@@ -71,10 +70,10 @@ export default function Update() {
                 setTimeout(() => {
                     setUpdated(false)        
                 }, 1500); 
-            })
+            }) 
             .catch(err=>setError(err))        
     } 
-    console.log(contacts)
+    //console.log(contacts)
     
     return (
         <div className='update__container'>

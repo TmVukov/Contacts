@@ -1,4 +1,6 @@
-import React, { useState, createContext } from 'react'
+import React, { useState, createContext, useEffect } from 'react'
+import { auth } from '../utils/firebase'
+
 
 export const StateContext = createContext()
 
@@ -11,8 +13,19 @@ export default function StateProvider({children}) {
     const [email, setEmail] = useState('')
     const [username, setUsername] = useState('')
     const [currentPage, setCurrentPage] = useState(1) 
-    const [contactsPerPage, setContactsPerPage] = useState('10')     
-    
+    const [contactsPerPage, setContactsPerPage] = useState('10')
+    const [currentUser, setCurrentUser] = useState(null)    
+    const [loading, setLoading] = useState(true)
+
+    useEffect(()=>{    
+       const unsubscribe = auth.onAuthStateChanged(user=>{           
+            setCurrentUser(user)
+            setLoading(false)
+        })
+           
+        return unsubscribe       
+      }, []) 
+     
 
     const state={
         contacts, setContacts,       
@@ -23,12 +36,13 @@ export default function StateProvider({children}) {
         email, setEmail,
         username, setUsername,
         currentPage, setCurrentPage,
-        contactsPerPage, setContactsPerPage            
+        contactsPerPage, setContactsPerPage,
+        currentUser, setCurrentUser            
     }
-
+    
     return (
         <StateContext.Provider value={state}>
-            {children}
+            {!loading && children}
         </StateContext.Provider>
     )
 }

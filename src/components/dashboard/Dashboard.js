@@ -25,7 +25,7 @@ export default function Dashboard() {
 
         const fetchedUsers = axios.get(
             'https://contacts-d9f0b-default-rtdb.europe-west1.firebasedatabase.app/users.json')
-        .then(resp=>{
+        .then(resp=>{ 
             const usersArr = extractDataFromObject(resp)
             const user = usersArr.filter(e=>e.email === sessionEmail)
             setUsername(user[0].username) 

@@ -10,7 +10,7 @@ import Footer from '../footer/Footer'
 import { IoMdContact } from 'react-icons/io'
 
 export default function SignUp() {
-    const [email, setEmail] = useState('')
+    const [email, setEmail] = useState('') 
     const [password, setPassword] = useState('')   
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)    
@@ -22,21 +22,27 @@ export default function SignUp() {
     const handleSubmit =  e =>{
         e.preventDefault()
         
-        const passwordReg = /^(?=.*[0-9])(?=.*[a-z])(?=.*[$#!+-]).{6,}$/
-
-        setLoading(true)
-
-        if(!password.match(passwordReg)){
-            return setError(
-                'Password should contain: at least 6 characters, 1 number and 1 special character: +, -, !, #, $.')
-        }             
+        const passwordReg = /^(?=.*[0-9])(?=.*[a-z])(?=.*[$#!+-]).{6,}$/          
         
+        setLoading(true)
 
         auth.createUserWithEmailAndPassword(email, password)
         .then(user=>{
             if(user && !loading) history.push('/')                      
         })
-        .catch(err=>setError(err.message))
+        .catch(err=>{            
+            if(!password.match(passwordReg)){
+                setError(
+                    'Password should contain: at least 6 characters, 1 number and 1 special character: +, -, !, #, $.')
+            }    
+            setError(err.message)
+
+            setLoading(false)
+
+            setTimeout(() => {
+                setError("");
+              }, 2000);
+        })
 
         
         sessionStorage.setItem('user', JSON.stringify(email))
@@ -60,19 +66,14 @@ export default function SignUp() {
            <main>
 
             {
-                    error && loading ? 
-
-                    <>
-                        <p>{error}</p>
-                        <p>Please refresh the page.</p>
-                    </>  :
-
                     loading ?
 
                     <Loader className='loader' type="Oval" color="#C7E2F7" height={80} width={80}/> :               
                                               
             
-                    <form onSubmit={handleSubmit} className='signup__form'> 
+                    <form onSubmit={handleSubmit} className='signup__form'>
+                        
+                        {error && <p>{error}</p>} 
 
                         <input 
                             onChange={e=>setUsername(e.target.value)} 

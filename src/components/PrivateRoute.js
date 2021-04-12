@@ -1,26 +1,15 @@
-import React, { useEffect } from 'react'
-import { Route } from 'react-router-dom'
-import { auth } from '../utils/firebase'
-import { useHistory } from 'react-router-dom'
+import React, { useContext } from 'react'
+import { Route, Redirect } from 'react-router-dom'
+import { StateContext } from '../utils/stateProvider'
 
-export default function PrivateRoute({component: Component, ...rest}) {
-   
-    const history = useHistory() 
+export default function PrivateRoute({component: Component, ...rest}) {    
     
-    useEffect(()=>{
-       const unsubscribe = auth.onAuthStateChanged(user=>{            
-            if(user) history.push('/')             
-            else history.push('/home')            
-         }) 
-         
-        return unsubscribe
-      }, [history])      
- 
-        
+    const { currentUser } = useContext(StateContext)      
+            
     return (
         <Route
             {...rest}
-            render={props => auth.currentUser && <Component {...props}/>}
+            render={props => currentUser ? <Component {...props}/> : <Redirect to='/signup'/>}
         />           
     )
 }
