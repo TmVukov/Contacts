@@ -1,86 +1,86 @@
-import React, { useState } from 'react'
-import './Login.scss'
-import { auth } from '../../utils/firebase'
-import { Link, useHistory } from 'react-router-dom'
-import Loader from "react-loader-spinner"
-import Header from '../header/Header'
-import Footer from '../footer/Footer'
-import { IoMdContact } from 'react-icons/io'
-
+import React, { useState, useContext } from 'react';
+import './Login.scss';
+import { StateContext } from '../../utils/stateProvider';
+import { auth } from '../../utils/firebase';
+import { Link, useHistory } from 'react-router-dom';
+import Loader from 'react-loader-spinner';
+import Header from '../header/Header';
+import Footer from '../footer/Footer';
+import { IoMdContact } from 'react-icons/io';
 
 export default function LogIn() {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [loading, setLoading] = useState(false)
-    const [error, setError] = useState('')   
-    const history = useHistory() 
-    
-    
-    const handleSubmit = e =>{
-        e.preventDefault()        
-        
-        setLoading(true)
-        
-        auth.signInWithEmailAndPassword(email, password)
-        .then(user=>{
-            if(user) history.push('/')            
-        })
-        .catch(()=>{
-            setError('Failed to log in!')
-            setLoading(false)
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const history = useHistory();
 
-            setTimeout(() => {
-                setError("");
-              }, 2000);
-        }) 
-       
-        sessionStorage.setItem('user', JSON.stringify(email))
-    }   
-    
+  const { setCurrentUser } = useContext(StateContext);
 
-    return (
-        <div className='login__container'> 
-            <Header>
-                <Link to='/home'><IoMdContact className='home__logo'/></Link>
-                <Link to='/signup'>sign up</Link>
-            </Header>    
-            
-            <main>
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-                {                   
-                    loading ?
+    setLoading(true);
 
-                    <Loader className='loader' type="Oval" color="#C7E2F7" height={80} width={80}/> : 
-                    
-                    
-                        
-                    <form onSubmit={handleSubmit} className='login__form'>                        
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then((user) => {
+        setCurrentUser(user);
+        history.push('/');
+      })
+      .catch(() => {
+        setError('Failed to log in!');
+        setLoading(false);
+        setTimeout(() => {
+          setError('');
+        }, 2000);
+      });
 
-                        {error && <p>{error} Please try again.</p>} 
+    sessionStorage.setItem('user', JSON.stringify(email));
+  };
 
-                        <input 
-                            onChange={e=>setEmail(e.target.value)} 
-                            type='email' 
-                            placeholder='Enter email' 
-                            required
-                        />
+  return (
+    <div className="login__container">
+      <Header>
+        <Link to="/home">
+          <IoMdContact className="home__logo" />
+        </Link>
+        <Link to="/signup">sign up</Link>
+      </Header>
 
-                        <input 
-                            onChange={e=>setPassword(e.target.value)} 
-                            type='password' 
-                            placeholder='Enter password' 
-                            required
-                        />
+      <main>
+        {loading ? (
+          <Loader
+            className="loader"
+            type="Oval"
+            color="#C7E2F7"
+            height={80}
+            width={80}
+          />
+        ) : (
+          <form onSubmit={handleSubmit} className="login__form">
+            {error && <p>{error} Please try again.</p>}
 
-                        <button>Submit</button>
+            <input
+              onChange={(e) => setEmail(e.target.value)}
+              type="email"
+              placeholder="Enter email"
+              required
+            />
 
-                    </form>               
-                }
+            <input
+              onChange={(e) => setPassword(e.target.value)}
+              type="password"
+              placeholder="Enter password"
+              required
+            />
 
-            </main>
+            <button>Submit</button>
+          </form>
+        )}
+      </main>
 
-            <Footer/>
-            
-        </div>
-    )
+      <Footer />
+    </div>
+  );
 }

@@ -1,65 +1,66 @@
-import React, { useContext } from 'react'
-import './Pagination.scss'
-import { Link } from 'react-router-dom'
-import { StateContext } from '../../utils/stateProvider'
-import { GrFormPrevious, GrFormNext } from 'react-icons/gr'
+import React, { useContext } from 'react';
+import './Pagination.scss';
+import { Link } from 'react-router-dom';
+import { StateContext } from '../../utils/stateProvider';
+import { GrFormPrevious, GrFormNext } from 'react-icons/gr';
 
 export default function Pagination() {
-    
-    const { contacts, currentPage, setCurrentPage, contactsPerPage, setContactsPerPage } = useContext(StateContext) 
-    
-     
-    const pageNumbers = []
-    let pageNumber = Math.ceil(contacts.length / contactsPerPage)
+  const {
+    contacts,
+    currentPage,
+    setCurrentPage,
+    contactsPerPage,
+    setContactsPerPage,
+  } = useContext(StateContext);
 
-    for(let i=1; i<= pageNumber; i++){
-        pageNumbers.push(i)
-    }
+  const pageNumbers = [];
+  let pageNumber = Math.ceil(contacts.length / contactsPerPage);
 
-    const handlePagination = pageNumber => setCurrentPage(pageNumber)
+  for (let i = 1; i <= pageNumber; i++) {
+    pageNumbers.push(i);
+  }
 
-    const handlePrev = () =>{        
-        setCurrentPage(currentPage-1)    
-       
-        if(currentPage <= 1) setCurrentPage(1)
-    }
+  const handlePagination = (pageNumber) => setCurrentPage(pageNumber);
 
-    const handleNext= () =>{
-        setCurrentPage(currentPage+1)    
-       
-        if(currentPage >= pageNumber) setCurrentPage(pageNumber)
-    }        
+  const handlePrev = () => {
+    setCurrentPage(currentPage - 1);
 
-    
-    return (
-        <div className='pagination__container'> 
+    if (currentPage <= 1) setCurrentPage(1);
+  };
 
-            <div className='pagination'>
-                <GrFormPrevious onClick={handlePrev} className='pagination__control'/> 
+  const handleNext = () => {
+    setCurrentPage(currentPage + 1);
 
-                {
-                    pageNumbers.map((num, i) =>
-                        <li key={i} className='pagination__num'>
-                            <Link to='/contacts' onClick={()=>handlePagination(num)}>{num}</Link>
-                        </li>
-                    )                
-                }
+    if (currentPage >= pageNumber) setCurrentPage(pageNumber);
+  };
 
-                <GrFormNext onClick={handleNext} className='pagination__control'/>
-            </div>
+  return (
+    <div className="pagination__container">
+      <div className="pagination">
+        <GrFormPrevious onClick={handlePrev} className="pagination__control" />
 
-            <div className='pagination__sort'>
-                    <p>sort by:</p>
-                    <select
-                        value={contactsPerPage}
-                        onChange={e=>setContactsPerPage(e.target.value)}                                             
-                    >
-                        <option value="5">5</option>
-                        <option value="10">10</option>                                               
-                        <option value="15">15</option>                                               
-                    </select>
-            </div>
+        {pageNumbers.map((num, i) => (
+          <li key={i} className="pagination__num">
+            <Link to="/contacts" onClick={() => handlePagination(num)}>
+              {num}
+            </Link>
+          </li>
+        ))}
 
-        </div>
-    )
+        <GrFormNext onClick={handleNext} className="pagination__control" />
+      </div>
+
+      <div className="pagination__sort">
+        <p>sort by:</p>
+        <select
+          value={contactsPerPage}
+          onChange={(e) => setContactsPerPage(e.target.value)}
+        >
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="15">15</option>
+        </select>
+      </div>
+    </div>
+  );
 }
