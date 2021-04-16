@@ -122,8 +122,12 @@ export default function Contacts() {
             </tr>
             {currentContacts
               .filter((contact) => {
-                if (!search.length) return contact;
-                return Object.values(contact).includes(search);
+                if (!search.length) return contact;                
+                return (
+                  contact.name.includes(search) ||
+                  contact.surname.includes(search) ||
+                  contact.email.includes(search)
+                );
               })
               .sort((a, b) => {
                 if (selectedValue === 'a-z')
