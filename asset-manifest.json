@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/Contacts/static/css/main.90628ced.chunk.css",
-    "main.js": "/Contacts/static/js/main.9c1945f1.chunk.js",
-    "main.js.map": "/Contacts/static/js/main.9c1945f1.chunk.js.map",
+    "main.css": "/Contacts/static/css/main.e42be0ce.chunk.css",
+    "main.js": "/Contacts/static/js/main.5a39d068.chunk.js",
+    "main.js.map": "/Contacts/static/js/main.5a39d068.chunk.js.map",
     "runtime-main.js": "/Contacts/static/js/runtime-main.494ec041.js",
     "runtime-main.js.map": "/Contacts/static/js/runtime-main.494ec041.js.map",
-    "static/js/2.e0e210ca.chunk.js": "/Contacts/static/js/2.e0e210ca.chunk.js",
-    "static/js/2.e0e210ca.chunk.js.map": "/Contacts/static/js/2.e0e210ca.chunk.js.map",
+    "static/js/2.a8624f5f.chunk.js": "/Contacts/static/js/2.a8624f5f.chunk.js",
+    "static/js/2.a8624f5f.chunk.js.map": "/Contacts/static/js/2.a8624f5f.chunk.js.map",
     "index.html": "/Contacts/index.html",
-    "static/css/main.90628ced.chunk.css.map": "/Contacts/static/css/main.90628ced.chunk.css.map",
-    "static/js/2.e0e210ca.chunk.js.LICENSE.txt": "/Contacts/static/js/2.e0e210ca.chunk.js.LICENSE.txt",
-    "static/media/Footer.scss": "/Contacts/static/media/cover-image.d6eacf85.jpg"
+    "static/css/main.e42be0ce.chunk.css.map": "/Contacts/static/css/main.e42be0ce.chunk.css.map",
+    "static/js/2.a8624f5f.chunk.js.LICENSE.txt": "/Contacts/static/js/2.a8624f5f.chunk.js.LICENSE.txt",
+    "static/media/Navbar.scss": "/Contacts/static/media/cover-image.d6eacf85.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.494ec041.js",
-    "static/js/2.e0e210ca.chunk.js",
-    "static/css/main.90628ced.chunk.css",
-    "static/js/main.9c1945f1.chunk.js"
+    "static/js/2.a8624f5f.chunk.js",
+    "static/css/main.e42be0ce.chunk.css",
+    "static/js/main.5a39d068.chunk.js"
   ]
 }
