@@ -1,46 +1,50 @@
-@import '../../styles/mixins.scss'; 
+@import '../../styles/mixins.scss';
 
-.contacts__container{
-    @include container;
+.contacts__container {
+  @include container;
 }
 
-.contacts__container input{
-    @include input;    
+.contacts__container input {
+  border: 1px solid black;
+  border-radius: 5px;
+  height: 22px;
 }
 
-.contacts__link{
-    @include link;
+.contacts__link {
+  @include link;
 }
 
-.contacts__table, tr, td{
-   @include table;
+.contacts__table,
+tr,
+td {
+  @include table;
+  margin-top: 80px;
 }
 
-
-.contacts__table a{   
-    text-decoration: none;   
+.contacts__table a {
+  text-decoration: none;
 }
 
-.contacts__sort{
-    display: flex;
-    align-items: center;    
+.contacts__sort {
+  display: flex;
+  align-items: center;
 }
 
-.contacts__sort p{
-    color: $color-font;
-    margin-right: 5px;
+.contacts__sort p {
+  color: $color-font;
+  margin-right: 5px;
 }
 
+@media (max-height: 900px) {
+  .contacts__table,
+  th,
+  tr,
+  td {
+    padding: 5px !important;
+    font-size: 14px !important;
+  }
 
-@media(max-height:900px){
-    .contacts__table, th, tr, td{
-        padding: 5px !important;
-        font-size: 14px !important;
-     }
-
-     .contacts__container input{
-        padding: 5px 10px !important;   
-    }
-     
-} 
-
+  .contacts__container input {
+    padding: 5px 10px !important;
+  }
+}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import './Contacts.scss';
-import Header from '../header/Header';
+import Top from '../top/Top';
+import Navbar from '../navbar/Navbar';
 import { StateContext } from '../../utils/stateProvider';
 import { extractDataFromObject } from '../../utils/utils';
 import { getId } from '../../utils/utils';
@@ -75,16 +76,8 @@ export default function Contacts() {
   };
 
   return (
-    <div className="contacts__container">
-      <Header>
-        <Link to="/" className="contacts__link home">
-          home
-        </Link>
-
-        <Link to="/favorites" className="contacts__link favorites">
-          favorites
-        </Link>
-
+    <section className="contacts__container">
+      <Top>
         <input
           onChange={(e) => setSearch(e.target.value)}
           type="search"
@@ -101,7 +94,9 @@ export default function Contacts() {
             <option value="z-a">z-a</option>
           </select>
         </div>
-      </Header>
+      </Top>
+
+      <Navbar />
 
       <Main>
         {loading ? (
@@ -122,7 +117,7 @@ export default function Contacts() {
             </tr>
             {currentContacts
               .filter((contact) => {
-                if (!search.length) return contact;                
+                if (!search.length) return contact;
                 return (
                   contact.name.includes(search) ||
                   contact.surname.includes(search) ||
@@ -178,6 +173,6 @@ export default function Contacts() {
       </Main>
 
       <Footer />
-    </div>
+    </section>
   );
 }

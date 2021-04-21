@@ -3,9 +3,10 @@ import './Dashboard.scss';
 import { StateContext } from '../../utils/stateProvider';
 import { extractDataFromObject } from '../../utils/utils';
 import { auth } from '../../utils/firebase';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-import Header from '../header/Header';
+import Top from '../top/Top';
+import Navbar from '../navbar/Navbar';
 import Form from '../form/Form';
 import Main from '../main/Main';
 import Footer from '../footer/Footer';
@@ -32,24 +33,22 @@ export default function Dashboard() {
         const user = usersArr.filter((e) => e.email === sessionEmail);
         setUsername(user[0].username);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err)); 
 
     return fetchedUsers;
   }, [setUsername, sessionEmail]);
 
   return (
     <section className="dashboard__container">
-      <Header>
-        <p>Welcome {username}!</p>
-
-        <Link to="/contacts" className="dashboard__link-contacts">
-          contacts
-        </Link>
+      <Top>
+        <p>Welcome {username}!</p>     
 
         <button onClick={handleLogout} className="dashboard__btn-logout">
           log out
         </button>
-      </Header>
+      </Top>
+
+      <Navbar/>
 
       <Main>
         <Form />

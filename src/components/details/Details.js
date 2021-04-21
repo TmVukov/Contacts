@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import './Details.scss';
-import Header from '../header/Header';
-import { Link } from 'react-router-dom';
+import Top from '../top/Top';
+import Navbar from '../navbar/Navbar';
 import { StateContext } from '../../utils/stateProvider';
 import { axiosInstance } from '../../utils/axios';
 import Main from '../main/Main';
@@ -33,20 +33,11 @@ export default function Details() {
 
   return (
     <div className="details__container">
-      <Header>
-        <Link to="/contacts" className="details__link home">
-          contacts
-        </Link>
-        <Link to="/favorites" className="details__link favorites">
-          favorites
-        </Link>
-        <Link to="/update" className="details__link update">
-          update
-        </Link>
-      </Header>
+      <Top />
+      <Navbar />
 
       <Main>
-        <button onClick={deleteContact}>Delete Contact</button>
+        <button className='details__btn' onClick={deleteContact}>Delete Contact</button>
 
         {error ? (
           <p>{error}</p>

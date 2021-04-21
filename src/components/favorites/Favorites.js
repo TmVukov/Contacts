@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Favorites.scss';
-import Header from '../header/Header';
+import Top from '../top/Top';
+import Navbar from '../navbar/Navbar';
 import { extractDataFromObject } from '../../utils/utils';
 import { Link } from 'react-router-dom';
 import { getId } from '../../utils/utils';
@@ -26,11 +27,8 @@ export default function Favorites() {
 
   return (
     <div className="favorites__container">
-      <Header>
-        <Link to="/contacts" className="favorites__link home">
-          contacts
-        </Link>
-      </Header>
+      <Top />
+      <Navbar />
 
       <Main>
         <table className="favorites__table">

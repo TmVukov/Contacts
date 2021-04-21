@@ -1,17 +1,20 @@
-@import '../../styles/mixins.scss'; 
+@import '../../styles/mixins.scss';
 
-.favorites__container{
-    @include container;
+.favorites__container {
+  @include container;
 }
 
-.favorites__link{
-    @include link;
+.favorites__link {
+  @include link;
 }
 
-.favorites__table, tr, td{
-    @include table;
+.favorites__table,
+tr,
+td {
+  @include table;
+  margin-top: 80px;
 }
 
-.favorites__table a{   
-    text-decoration: none;     
+.favorites__table a {
+  text-decoration: none;
 }

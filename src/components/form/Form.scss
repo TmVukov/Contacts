@@ -1,72 +1,74 @@
-@import '../../styles/mixins.scss'; 
+@import '../../styles/mixins.scss';
 
-.form__container input{
-    @include input;
+.form__container input {
+  @include input;
 }
 
-.form__info{
-    @include form; 
+.form__info {
+  @include form;
 }
 
-.form__info > *{
-    margin-bottom: 20px;
+.form__info > * {
+  margin-bottom: 20px;
 }
 
-.form__info button{
-    @include button;
+.form__info button {
+  @include button;
 }
 
-.form__info button:hover{
-    @include hover;
+.form__info button:hover {
+  @include hover;
 }
 
-.form__info button:disabled{
-    @include disabled;
+.form__info button:disabled {
+  @include disabled;
 }
 
-.form__button-enter{    
-    margin-bottom: 20px !important;    
+.form__button-enter {
+  margin-bottom: 20px !important;
 }
 
-.form__date{
-    display: flex;
-    flex-direction: column;
-    align-items: center;    
+.form__date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.form__date label{
-    font-size: 12px;
-    margin-bottom: 5px;
-} 
-
-.form__date input{    
-    @include input
+.form__date label {
+  font-size: 12px;
+  margin-bottom: 5px;
 }
 
-.form__message{
-    margin-top: 10px;    
-    padding: 3px 10px;
-    border-radius: 10px;
-    color: $color-font;
-    font-weight: 400;
+.form__date input {
+  @include input;
 }
 
-.success{
-    background: $color-main;
+.form__message {
+  margin-top: 10px;
+  padding: 3px 10px;
+  border-radius: 10px;
+  color: $color-font;
+  font-weight: 400;
 }
 
-.error{
-    background: crimson
+.success {
+  background: $color-main;
 }
 
-
-@media(max-height:900px){
-    .form__container input{
-        padding: 7px 10px !important;
-    }
-
-    .form__info button{
-        padding: 7px 10px !important;
-    }
+.error {
+  background: crimson;
 }
- 
+
+@media (max-height: 900px) {
+  .form__container input {
+    padding: 7px 10px !important;
+  }
+
+  .form__info {
+    margin-top: 30px;
+  }
+
+  .form__info button {
+    padding: 7px 10px !important;
+  }
+}

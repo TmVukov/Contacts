@@ -1,48 +1,45 @@
-@import '../../styles/mixins.scss'; 
+@import '../../styles/mixins.scss';
 
-.login__container a{
-    @include link;
+.login__container a {
+  @include link;
 }
 
-.login__container p{
-    @include link;
-    margin-bottom: 20px;
+.login__container p {
+  @include link;
+  margin-bottom: 20px;
 }
 
-.loader{
-    margin-top: 100px;
+.loader {
+  margin-top: 100px;
 }
 
-.login__container main{
-    @include home__main
+.login__container main {
+  @include home__main;
 }
 
-.login__form{
-    @include home__form;       
+.login__form {
+  @include home__form;
 }
 
-.login__form input{
-    @include input;
+.login__form input {
+  @include input;
 }
 
-.login__form button{
-    @include button;
+.login__form button {
+  @include button;
 }
 
-.login__form button:hover{
-    @include hover;
+.login__form button:hover {
+  @include hover;
 }
 
 .login__form > * {
-    margin-bottom: 25px;
+  margin-bottom: 25px;
 }
 
-
-@media(max-height:900px){
-    .login__container main{        
-        min-height: calc(100vh - 120px) !important;  
-        margin-top: 60px;
-    }
+@media (max-height: 900px) {
+  .login__container main {
+    min-height: calc(100vh - 120px) !important;
+    margin-top: 60px;
+  }
 }
-
-

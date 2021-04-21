@@ -1,55 +1,53 @@
-@import '../../styles/variables.scss'; 
+@import '../../styles/variables.scss';
 
-.pagination__container{
-    display: flex;
-    flex-direction: column;
-    margin: 20px auto;
-    width: 40%;       
-    display: flex;
-    place-items: center;  
-    
+.pagination__container {
+  display: flex;
+  flex-direction: column;
+  margin: 20px auto;
+  width: 40%;
+  display: flex;
+  place-items: center;
 }
 
-.pagination{
-    display: flex;
-    place-items: center;
+.pagination {
+  display: flex;
+  place-items: center;
 }
 
-.pagination__num{ 
-    margin: 0 10px;   
-    list-style: none;
-    cursor: pointer;
-    display:flex;
-    place-content: center;
-    place-items: center;
-    width: 30px;
-    height: 30px;
-    border: 1px solid $color-main;
-    border-radius: 30px;       
+.pagination__num {
+  margin: 0 10px;
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  place-content: center;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid $color-main;
+  border-radius: 30px;
 }
 
-.pagination__num a{
-    text-decoration: none;
+.pagination__num a {
+  text-decoration: none;
 }
 
-.pagination__control{
-    cursor: pointer;
+.pagination__control {
+  cursor: pointer;
 }
 
-.pagination__sort{
-    display: flex;
-    place-items: center;
+.pagination__sort {
+  display: flex;
+  place-items: center;
 }
 
-.pagination__sort p{
-    margin-right: 5px;
+.pagination__sort p {
+  margin-right: 5px;
 }
 
-
-@media(max-height:900px){
-    .pagination__num{        
-        width: 25px;
-        height: 25px;        
-        border-radius: 25px;       
-    }
+@media (max-height: 900px) {
+  .pagination__num {
+    width: 25px;
+    height: 25px;
+    border-radius: 25px;
+  }
 }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import './Update.scss';
-import Header from '../header/Header';
-import { Link } from 'react-router-dom';
+import Top from '../top/Top';
+import Navbar from '../navbar/Navbar';
 import { StateContext } from '../../utils/stateProvider';
 import { axiosInstance } from '../../utils/axios';
 import Main from '../main/Main';
@@ -77,9 +77,8 @@ export default function Update() {
 
   return (
     <div className="update__container">
-      <Header>
-        <Link to={`/details/${sessionId}`}>details</Link>
-      </Header>
+      <Top />
+      <Navbar />
 
       <Main>
         {updated && (

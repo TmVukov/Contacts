@@ -1,60 +1,55 @@
-@import '../../styles/mixins.scss'; 
+@import '../../styles/mixins.scss';
 
-.update__container{
-    @include container;
+.update__container {
+  @include container;
 }
 
-.update__container a{
-    @include link;
+.update__form {
+  @include form;
 }
 
-.update__form{
-    @include form;
+.update__form input {
+  @include input;
 }
 
-.update__form input{
-    @include input;
+.update__form button {
+  @include button;
 }
 
-.update__form button{
-    @include button;
+.update__form button:hover {
+  @include hover;
 }
 
-.update__form button:hover{
-    @include hover;
+.update__form button:disabled {
+  @include disabled;
 }
 
-.update__form button:disabled{
-    @include disabled;
+.update__form > * {
+  margin-bottom: 20px;
 }
 
-.update__form > *{
-    margin-bottom: 20px;
-} 
-
-.update__message{
-    margin-bottom: 15px;    
-    padding: 3px 10px;
-    border-radius: 10px;
-    color: $color-font;
-    font-weight: 400;
+.update__message {
+  margin-bottom: 15px;
+  padding: 3px 10px;
+  border-radius: 10px;
+  color: $color-font;
+  font-weight: 400;
 }
 
-.success{
-    background: $color-main;
+.success {
+  background: $color-main;
 }
 
-.error{
-    background: crimson;
+.error {
+  background: crimson;
 }
 
+@media (max-height: 900px) {
+  .update__form input {
+    padding: 7px 10px !important;
+  }
 
-@media(max-height:900px){
-    .update__form input{
-        padding: 7px 10px !important;
-    }
-
-    .update__form button{
-        padding: 7px 10px !important;
-    }
+  .update__form button {
+    padding: 7px 10px !important;
+  }
 }

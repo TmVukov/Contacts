@@ -1,34 +1,30 @@
-@import '../../styles/mixins.scss'; 
+@import '../../styles/mixins.scss';
 
-.details__container{
-    @include container;
+.details__container {
+  @include container;
 }
 
-
-.details__container a{
-    @include link;
+.details__btn {
+  @include button;
+  margin-top: 80px;
 }
 
-.details__container button{
-    @include button;    
+.details__btn:hover {
+  @include hover;
 }
 
-.details__container button:hover{
-    @include hover;
+.details__table {
+  margin-top: 30px;
 }
 
-.details__table{
-    margin-top: 30px;
+.details__table,
+th,
+tr {
+  @include table;
 }
 
-.details__table, th, tr{    
-    @include table;
+@media (max-height: 900px) {
+  .details__container button {
+    padding: 7px 10px !important;
+  }
 }
-
-
-@media(max-height:900px){
-    .details__container button{
-        padding: 7px 10px !important;
-    }
-}
-

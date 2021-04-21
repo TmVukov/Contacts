@@ -1,47 +1,45 @@
-@import '../../styles/mixins.scss'; 
+@import '../../styles/mixins.scss';
 
-.signup__container a{
-    @include link;
+.signup__container a {
+  @include link;
 }
 
-.signup__container p{
-    @include link;
-    margin-bottom: 20px;
+.signup__container p {
+  @include link;
+  margin-bottom: 20px;
 }
 
-.loader{
-    margin-top: 100px;
+.loader {
+  margin-top: 100px;
 }
 
-.signup__container main{
-    @include home__main
+.signup__container main {
+  @include home__main;
 }
 
-.signup__form{
-    @include home__form       
+.signup__form {
+  @include home__form;
 }
 
-.signup__form input{
-    @include input;
+.signup__form input {
+  @include input;
 }
 
-.signup__form button{
-    @include button;
+.signup__form button {
+  @include button;
 }
 
-.signup__form button:hover{
-    @include hover;
+.signup__form button:hover {
+  @include hover;
 }
 
 .signup__form > * {
-    margin-bottom: 25px;
+  margin-bottom: 25px;
 }
 
-
-@media(max-height:900px){
-    .signup__container main{        
-        min-height: calc(100vh - 120px) !important;  
-        margin-top: 60px;
-    }
+@media (max-height: 900px) {
+  .signup__container main {
+    min-height: calc(100vh - 120px) !important;
+    margin-top: 60px;
+  }
 }
-

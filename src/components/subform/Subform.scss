@@ -1,34 +1,33 @@
-@import '../../styles/mixins.scss'; 
+@import '../../styles/mixins.scss';
 
-.subform__contacts{
-     @include form;
+.subform__contacts {
+  @include form;
+  margin-top: 0 !important;
 }
 
 .subform__contacts > * {
-    margin-bottom: 20px; 
+  margin-bottom: 20px;
 }
 
 .subform__mobile,
-.subform__phone{    
-    display: flex;
-    flex-direction: column;    
+.subform__phone {
+  display: flex;
+  flex-direction: column;
 }
 
-
-:is(.subform__mobile, .subform__phone) label{
-    font-size: 12px;
-    margin-bottom: 5px;
-    display: flex;
-    align-items: flex-start; 
+:is(.subform__mobile, .subform__phone) label {
+  font-size: 12px;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: flex-start;
 }
 
-.subform__email{
-    margin-top: 15px;
+.subform__email {
+  margin-top: 15px;
 }
 
-
-@media(max-height:900px){
-    .subform__contacts > * {
-        margin-bottom: 15px; 
-    }
+@media (max-height: 900px) {
+  .subform__contacts > * {
+    margin-bottom: 15px;
+  }
 }
