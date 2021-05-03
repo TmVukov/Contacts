@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 import './Details.scss';
-import Top from '../top/Top';
-import Navbar from '../navbar/Navbar';
+import Top from '../../components/top/Top';
+import Navbar from '../../components/navbar/Navbar';
 import { StateContext } from '../../utils/stateProvider';
 import { axiosInstance } from '../../utils/axios';
-import Main from '../main/Main';
-import Footer from '../footer/Footer';
+import Main from '../../components/main/Main';
+import Footer from '../../components/footer/Footer';
 
 export default function Details() {
   const [error, setError] = useState('');

@@ -64,57 +64,55 @@ export default function Form() {
   };
 
   return (
-    <div className="form__container">
-      <form onSubmit={addContact} ref={formRef} className="form__info">
-        {added ? (
-          <div className="form__message success">Contact is saved!</div>
-        ) : (
-          ''
-        )}
+    <form onSubmit={addContact} ref={formRef} className="form">
+      {added ? (
+        <div className="form__message success">Contact is saved!</div>
+      ) : (
+        ''
+      )}
 
-        {mobile && !isMobValid ? (
-          <div className="form__message error">Mobile format is invalid!</div>
-        ) : (
-          ''
-        )}
+      {mobile && !isMobValid ? (
+        <div className="form__message error">Mobile format is invalid!</div>
+      ) : (
+        ''
+      )}
 
-        {phone && !isPhoneValid ? (
-          <div className="form__message error">Phone format is invalid!</div>
-        ) : (
-          ''
-        )}
+      {phone && !isPhoneValid ? (
+        <div className="form__message error">Phone format is invalid!</div>
+      ) : (
+        ''
+      )}
 
-        <input
-          onChange={(e) => setName(e.target.value)}
-          type="text"
-          placeholder="Enter name"
-          maxLength="100"
-          required
-        />
+      <input
+        onChange={(e) => setName(e.target.value)}
+        type="text"
+        placeholder="Enter name"
+        maxLength="100"
+        required
+      />
 
-        <input
-          onChange={(e) => setSurname(e.target.value)}
-          type="text"
-          placeholder="Enter surname"
-          maxLength="300"
-          required
-        />
+      <input
+        onChange={(e) => setSurname(e.target.value)}
+        type="text"
+        placeholder="Enter surname"
+        maxLength="300"
+        required
+      />
 
-        <div className="form__date">
-          <label>Select birthdate</label>
-          <input onChange={(e) => setDate(e.target.value)} type="date" />
-        </div>
+      <div className="form__date">
+        <label>Select birthdate</label>
+        <input onChange={(e) => setDate(e.target.value)} type="date" />
+      </div>
 
-        <button onClick={() => setOpen(!open)} className="form__button-enter">
-          Enter contacts
-        </button>
+      <button onClick={() => setOpen(!open)} className="form__button-enter">
+        Enter contacts
+      </button>
 
-        {open && <SubForm />}
+      {open && <SubForm />}
 
-        <button disabled={!isMobValid || !isPhoneValid ? true : false}>
-          Add your contact
-        </button>
-      </form>
-    </div>
+      <button disabled={!isMobValid || !isPhoneValid ? true : false}>
+        Add your contact
+      </button>
+    </form>
   );
 }

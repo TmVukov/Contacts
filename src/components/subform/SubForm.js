@@ -6,7 +6,7 @@ export default function SubForm() {
   const { setMobile, setPhone, setEmail } = useContext(StateContext);
 
   return (
-    <div className="subform__contacts">
+    <div className="subform">
       <div className="subform__mobile">
         <label>Mobile format: 09x xxx(x) xxx</label>
         <input
@@ -14,7 +14,7 @@ export default function SubForm() {
           type="tel"
           placeholder="Enter mobile"
           maxLength="12"
-          required
+          required 
         />
       </div>
 

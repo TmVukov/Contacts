@@ -1,12 +1,12 @@
 import './App.scss';
-import Homepage from './components/homepage/Homepage';
-import Login from './components/login/Login';
-import Signup from './components/signup/Signup';
-import Dashboard from './components/dashboard/Dashboard';
-import Contacts from './components/contacts/Contacts';
-import Details from './components/details/Details';
-import Update from './components/update/Update';
-import Favorites from './components/favorites/Favorites';
+import Homepage from './pages/homepage/Homepage';
+import Login from './pages/login/Login';
+import Signup from './pages/signup/Signup';
+import Dashboard from './pages/dashboard/Dashboard';
+import Contacts from './pages/contacts/Contacts';
+import Details from './pages/details/Details';
+import Update from './pages/update/Update';
+import Favorites from './pages/favorites/Favorites';
 import PrivateRoute from './components/PrivateRoute';
 import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 

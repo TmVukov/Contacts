@@ -51,3 +51,15 @@
     border-radius: 25px;
   }
 }
+
+@media (max-height: 600px) {
+  .pagination__num {
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+  }
+
+  .pagination__sort p {
+    font-size: 12px;
+  }
+}

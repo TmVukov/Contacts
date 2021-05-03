@@ -1,82 +1,81 @@
 @import './variables.scss';
 
 @mixin container {
-    margin: 0 auto;
-    width: 100%; 
-    min-height: 100vh;      
-    display: flex;
-    flex-direction: column;    
-    align-items: center;
-} 
+  margin: 0 auto;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-@mixin form{
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-    width: 300px; 
-    margin-top: 80px;      
+@mixin form {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 300px;
+  margin-top: 80px;
 }
 
 @mixin home__main {
-    display: flex;
-    flex-direction: column;      
-    align-items: center;
-    width: 100%;
-    min-height: calc(100vh - 80px);  
-    margin-top: 80px;
-    background: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: calc(100vh - 180px);
+  margin-top: 80px;
+  background: black;
 }
 
-@mixin home__form{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;    
-    margin: 0 auto;    
-    width: 400px;
-    height: 200px;
-    margin-top: 150px;    
+@mixin home__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin: 0 auto;
+  width: 400px;
+  height: 200px;
+  margin-top: 150px;
 }
 
-@mixin input{
-    border: 1px solid $color-main;
-    border-radius: 10px;
-    padding: 10px;    
-    outline: none;
+@mixin input {
+  border: 1px solid $color-main;
+  border-radius: 10px;
+  padding: 10px;
+  outline: none;
 }
 
-@mixin button{
-    all: unset;
-    border: 2px solid $color-main;
-    border-radius: 10px;
-    padding: 10px;
-    color: $color-main;
-    font-weight: 700;
-    transition: all .2s;
-    cursor: pointer;
+@mixin button {
+  all: unset;
+  border: 2px solid $color-main;
+  border-radius: 10px;
+  padding: 10px;
+  color: $color-main;
+  font-weight: 700;
+  transition: all 0.2s;
+  cursor: pointer;
 }
 
-@mixin hover{
-    background-color: $color-main;
-    color: $color-font;    
+@mixin hover {
+  background-color: $color-main;
+  color: $color-font;
 }
 
-@mixin disabled{
-    background-color: lightgray;
-    border-color: lightgray;
-    color: grey;
-    cursor: not-allowed;
-    transition: none;    
+@mixin disabled {
+  background-color: lightgray;
+  border-color: lightgray;
+  color: grey;
+  cursor: not-allowed;
+  transition: none;
 }
 
-@mixin table{
-    border: 1px solid $color-table;
-    border-collapse: collapse;
-    padding: 10px;       
+@mixin table {
+  border: 1px solid $color-table;
+  border-collapse: collapse;
+  padding: 10px;
 }
 
-
-@mixin link{
-    all: unset;
-    cursor: pointer;
-    color: $color-font;
+@mixin link {
+  all: unset;
+  cursor: pointer;
+  color: $color-font;
 }

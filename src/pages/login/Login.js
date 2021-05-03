@@ -1,68 +1,51 @@
 import React, { useState, useContext } from 'react';
-import './Signup.scss';
+import './Login.scss';
 import { StateContext } from '../../utils/stateProvider';
 import { auth } from '../../utils/firebase';
 import { Link, useHistory } from 'react-router-dom';
-import { axiosInstance } from '../../utils/axios';
 import Loader from 'react-loader-spinner';
-import Header from '../header/Header';
-import Footer from '../footer/Footer';
+import Header from '../../components/header/Header';
+import Footer from '../../components/footer/Footer';
 import { IoMdContact } from 'react-icons/io';
 
-export default function SignUp() {
+export default function LogIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
   const history = useHistory();
 
-  const { username, setUsername, setCurrentUser } = useContext(StateContext);
+  const { setCurrentUser } = useContext(StateContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const passwordReg = /^(?=.*[0-9])(?=.*[a-z])(?=.*[$#!+-]).{6,}$/;
-
     setLoading(true);
 
     auth
-      .createUserWithEmailAndPassword(email, password)
-      .then(() => {
+      .signInWithEmailAndPassword(email, password)
+      .then((user) => {
         setCurrentUser(user);
         history.push('/');
       })
-      .catch((err) => {
-        if (!password.match(passwordReg)) {
-          setError(
-            'Password should contain: at least 6 characters, 1 number and 1 special character: +, -, !, #, $.',
-          );
-        }
-        setError(err.message);
-
+      .catch(() => {
+        setError('Failed to log in!');
         setLoading(false);
-
         setTimeout(() => {
           setError('');
         }, 2000);
       });
 
     sessionStorage.setItem('user', JSON.stringify(email));
-
-    const user = { email, username };
-
-    axiosInstance
-      .post('users.json/', user)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
   };
 
   return (
-    <div className="signup__container">
+    <div className="login__container">
       <Header>
         <Link to="/home">
           <IoMdContact className="home__logo" />
         </Link>
-        <Link to="/login">log in</Link>
+        <Link to="/signup">sign up</Link>
       </Header>
 
       <main>
@@ -75,14 +58,8 @@ export default function SignUp() {
             width={80}
           />
         ) : (
-          <form onSubmit={handleSubmit} className="signup__form">
-            {error && <p>{error}</p>}
-
-            <input
-              onChange={(e) => setUsername(e.target.value)}
-              type="text"
-              placeholder="Enter username"
-            />
+          <form onSubmit={handleSubmit} className="login__form">
+            {error && <p>{error} Please try again.</p>}
 
             <input
               onChange={(e) => setEmail(e.target.value)}

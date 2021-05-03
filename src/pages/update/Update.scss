@@ -53,3 +53,10 @@
     padding: 7px 10px !important;
   }
 }
+
+@media (max-height: 700px) {
+  .update__form {
+    width: 270px;
+    margin-top: 10px !important;
+  }
+}

@@ -1,11 +1,11 @@
 @import '../../styles/mixins.scss';
 
-.subform__contacts {
+.subform {
   @include form;
   margin-top: 0 !important;
 }
 
-.subform__contacts > * {
+.subform > * {
   margin-bottom: 20px;
 }
 
@@ -27,7 +27,25 @@
 }
 
 @media (max-height: 900px) {
-  .subform__contacts > * {
+  .subform > * {
     margin-bottom: 15px;
+  }
+}
+
+@media (max-height: 700px) {
+  .subform > * {
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-height: 600px) {
+  .subform > * {
+    margin-bottom: 5px;
+  }
+}
+
+@media (max-width: 600px) {
+  .subform {
+    width: 270px;
   }
 }

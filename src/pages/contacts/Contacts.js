@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import './Contacts.scss';
-import Top from '../top/Top';
-import Navbar from '../navbar/Navbar';
+import Top from '../../components/top/Top';
+import Navbar from '../../components/navbar/Navbar';
 import { StateContext } from '../../utils/stateProvider';
 import { extractDataFromObject } from '../../utils/utils';
 import { getId } from '../../utils/utils';
@@ -9,9 +9,9 @@ import { axiosInstance } from '../../utils/axios';
 import { Link } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai';
-import Pagination from '../pagination/Pagination';
-import Main from '../main/Main';
-import Footer from '../footer/Footer';
+import Pagination from '../../components/pagination/Pagination';
+import Main from '../../components/main/Main';
+import Footer from '../../components/footer/Footer';
 
 export default function Contacts() {
   const [loading, setLoading] = useState(false);

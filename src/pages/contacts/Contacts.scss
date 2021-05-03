@@ -10,6 +10,10 @@
   height: 22px;
 }
 
+.main {
+  background: transparent !important;
+}
+
 .contacts__link {
   @include link;
 }
@@ -41,7 +45,8 @@ td {
   tr,
   td {
     padding: 5px !important;
-    font-size: 14px !important;
+    font-size: 13px;
+    margin-top: 15px;
   }
 
   .contacts__container input {

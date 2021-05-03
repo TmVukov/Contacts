@@ -1,7 +1,7 @@
 import React, { useState, createContext, useEffect } from 'react';
 import { auth } from '../utils/firebase';
 
-export const StateContext = createContext();
+export const StateContext = createContext(); 
 
 export default function StateProvider({ children }) {
   const [contacts, setContacts] = useState([]);

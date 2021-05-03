@@ -1,10 +1,10 @@
 @import '../../styles/mixins.scss';
 
-.signup__container a {
+.login__container a {
   @include link;
 }
 
-.signup__container p {
+.login__container p {
   @include link;
   margin-bottom: 20px;
 }
@@ -13,33 +13,43 @@
   margin-top: 100px;
 }
 
-.signup__container main {
+.login__container main {
   @include home__main;
 }
 
-.signup__form {
+.login__form {
   @include home__form;
 }
 
-.signup__form input {
+.login__form input {
   @include input;
 }
 
-.signup__form button {
+.login__form button {
   @include button;
 }
 
-.signup__form button:hover {
+.login__form button:hover {
   @include hover;
 }
 
-.signup__form > * {
+.login__form > * {
   margin-bottom: 25px;
 }
 
 @media (max-height: 900px) {
-  .signup__container main {
+  .login__container main {
     min-height: calc(100vh - 120px) !important;
     margin-top: 60px;
+  }
+}
+
+@media (max-width: 600px) {
+  .header:last-child {
+    font-size: 14px;
+  }
+
+  .login__form {
+    width: 270px;
   }
 }

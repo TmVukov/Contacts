@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import './Favorites.scss';
-import Top from '../top/Top';
-import Navbar from '../navbar/Navbar';
+import Top from '../../components/top/Top';
+import Navbar from '../../components/navbar/Navbar';
 import { extractDataFromObject } from '../../utils/utils';
 import { Link } from 'react-router-dom';
 import { getId } from '../../utils/utils';
 import { axiosInstance } from '../../utils/axios';
-import Main from '../main/Main';
-import Footer from '../footer/Footer';
+import Main from '../../components/main/Main';
+import Footer from '../../components/footer/Footer';
 
 export default function Favorites() {
   const [favorites, setFavorites] = useState([]);

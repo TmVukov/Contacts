@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 import './Update.scss';
-import Top from '../top/Top';
-import Navbar from '../navbar/Navbar';
+import Top from '../../components/top/Top';
+import Navbar from '../../components/navbar/Navbar';
 import { StateContext } from '../../utils/stateProvider';
 import { axiosInstance } from '../../utils/axios';
-import Main from '../main/Main';
-import Footer from '../footer/Footer';
+import Main from '../../components/main/Main';
+import Footer from '../../components/footer/Footer';
 
 export default function Update() {
   const [error, setError] = useState('');
@@ -71,7 +71,7 @@ export default function Update() {
           setUpdated(false);
         }, 1500);
       })
-      .catch((err) => setError(err));
+      .catch((err) => setError(err)); 
   };
   //console.log(contacts)
 

@@ -5,11 +5,11 @@ import { extractDataFromObject } from '../../utils/utils';
 import { auth } from '../../utils/firebase';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-import Top from '../top/Top';
-import Navbar from '../navbar/Navbar';
-import Form from '../form/Form';
-import Main from '../main/Main';
-import Footer from '../footer/Footer';
+import Top from '../../components/top/Top';
+import Navbar from '../../components/navbar/Navbar';
+import Form from '../../components/form/Form';
+import Main from '../../components/main/Main';
+import Footer from '../../components/footer/Footer';
 
 export default function Dashboard() {
   const { username, setUsername } = useContext(StateContext);

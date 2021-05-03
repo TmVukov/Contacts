@@ -1,26 +1,26 @@
 @import '../../styles/mixins.scss';
 
-.form__container input {
-  @include input;
-}
-
-.form__info {
+.form {
   @include form;
 }
 
-.form__info > * {
+.form > * {
   margin-bottom: 20px;
 }
 
-.form__info button {
+.form input {
+  @include input;
+}
+
+.form button {
   @include button;
 }
 
-.form__info button:hover {
+.form button:hover {
   @include hover;
 }
 
-.form__info button:disabled {
+.form button:disabled {
   @include disabled;
 }
 
@@ -60,15 +60,44 @@
 }
 
 @media (max-height: 900px) {
-  .form__container input {
-    padding: 7px 10px !important;
-  }
-
-  .form__info {
+  .form {
     margin-top: 30px;
   }
 
-  .form__info button {
+  .form input {
     padding: 7px 10px !important;
+  }
+
+  .form button {
+    padding: 7px 10px !important;
+  }
+}
+
+@media (max-height: 800px) {
+  .form {
+    margin-top: 0;
+  }
+
+  .form > * {
+    margin-bottom: 20px;
+  }
+
+  .form__button-enter {
+    margin-bottom: 20px !important;
+  }
+}
+@media (max-height: 700px) {
+  .form > * {
+    margin-bottom: 10px;
+  }
+
+  .form__button-enter {
+    margin-bottom: 10px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .form {
+    width: 270px;
   }
 }

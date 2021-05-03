@@ -18,3 +18,9 @@ td {
 .favorites__table a {
   text-decoration: none;
 }
+
+@media (max-height: 800px) {
+  .favorites__table {
+    margin-top: 0px !important;
+  }
+}
