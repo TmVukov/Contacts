@@ -6,19 +6,25 @@ import { Link, useHistory } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
+import { useForm } from 'react-hook-form';
+import FormError from '../../components/formError/FormError';
 import { IoMdContact } from 'react-icons/io';
 
-export default function LogIn() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+export default function LogIn() {  
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const history = useHistory();
 
   const { setCurrentUser } = useContext(StateContext);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onHandleSubmit = (data) => {
+    const { email, password } = data;
 
     setLoading(true);
 
@@ -28,12 +34,12 @@ export default function LogIn() {
         setCurrentUser(user);
         history.push('/');
       })
-      .catch(() => {
-        setError('Failed to log in!');
+      .catch(err => {
+        setError(err.message);
         setLoading(false);
         setTimeout(() => {
           setError('');
-        }, 2000);
+        }, 5000);
       });
 
     sessionStorage.setItem('user', JSON.stringify(email));
@@ -58,22 +64,41 @@ export default function LogIn() {
             width={80}
           />
         ) : (
-          <form onSubmit={handleSubmit} className="login__form">
-            {error && <p>{error} Please try again.</p>}
+          <form onSubmit={handleSubmit(onHandleSubmit)} className="login__form" noValidate>
+            {error && <p className='login__error'>{error} Please try again.</p>}
 
+            <label>Email</label>
             <input
-              onChange={(e) => setEmail(e.target.value)}
+              {...register('email', {
+                required: '⚠ Email is required',
+                pattern: {
+                  value: /^\S+@\S+$/i,
+                  message: '⚠ Please enter valid email',
+                },
+              })}
               type="email"
               placeholder="Enter email"
-              required
             />
+            <FormError>
+              {errors.email && <p>{errors.email.message}</p>}
+            </FormError>
 
+            <label>Password</label>
             <input
-              onChange={(e) => setPassword(e.target.value)}
+              {...register('password', {
+                required: '⚠ Password is required',
+                minLength: {
+                  value: /^(?=.*[0-9])(?=.*[a-z])(?=.*[$#!+-]).{6,}$/,
+                  message:
+                    '⚠ Password should contain: at least 6 characters, 1 number and 1 special character: +, -, !, #, $.',
+                },
+              })}
               type="password"
               placeholder="Enter password"
-              required
             />
+             <FormError>
+              {errors.password && <p>{errors.password.message}</p>}
+            </FormError>
 
             <button>Submit</button>
           </form>

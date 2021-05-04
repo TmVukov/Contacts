@@ -7,21 +7,25 @@ import { axiosInstance } from '../../utils/axios';
 import Loader from 'react-loader-spinner';
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
+import { useForm } from 'react-hook-form';
+import FormError from '../../components/formError/FormError';
 import { IoMdContact } from 'react-icons/io';
 
-export default function SignUp() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+export default function SignUp() {  
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const history = useHistory();
 
-  const { username, setUsername, setCurrentUser } = useContext(StateContext);
+  const { setUsername, setCurrentUser } = useContext(StateContext);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-    const passwordReg = /^(?=.*[0-9])(?=.*[a-z])(?=.*[$#!+-]).{6,}$/;
+  const onHandleSubmit = (data) => {
+    const { username, email, password } = data;
 
     setLoading(true);
 
@@ -32,20 +36,15 @@ export default function SignUp() {
         history.push('/');
       })
       .catch((err) => {
-        if (!password.match(passwordReg)) {
-          setError(
-            'Password should contain: at least 6 characters, 1 number and 1 special character: +, -, !, #, $.',
-          );
-        }
         setError(err.message);
-
         setLoading(false);
 
         setTimeout(() => {
           setError('');
-        }, 2000);
+        }, 5000);
       });
 
+    setUsername(username);
     sessionStorage.setItem('user', JSON.stringify(email));
 
     const user = { email, username };
@@ -75,28 +74,61 @@ export default function SignUp() {
             width={80}
           />
         ) : (
-          <form onSubmit={handleSubmit} className="signup__form">
-            {error && <p>{error}</p>}
+          <form
+            onSubmit={handleSubmit(onHandleSubmit)}
+            className="signup__form"
+            noValidate
+          >
+            {error && <p className='signup__error'>{error}</p>}
 
+            <label>Username</label>
             <input
-              onChange={(e) => setUsername(e.target.value)}
+              {...register('username', {
+                required: '⚠ Username is required',
+                minLength: {
+                  value: 3,
+                  message: '⚠ Username should contain at least 3 characters',
+                },
+              })}
               type="text"
               placeholder="Enter username"
             />
+            <FormError>
+              {errors.username && <p>{errors.username.message}</p>}
+            </FormError>
 
+            <label>Email</label>
             <input
-              onChange={(e) => setEmail(e.target.value)}
+              {...register('email', {
+                required: '⚠ Email is required',
+                pattern: {
+                  value: /^\S+@\S+$/i,
+                  message: '⚠ Please enter valid email',
+                },
+              })}
               type="email"
               placeholder="Enter email"
-              required
             />
+            <FormError>
+              {errors.email && <p>{errors.email.message}</p>}
+            </FormError>
 
+            <label>Password</label>
             <input
-              onChange={(e) => setPassword(e.target.value)}
+              {...register('password', {
+                required: '⚠ Password is required',
+                minLength: {
+                  value: /^(?=.*[0-9])(?=.*[a-z])(?=.*[$#!+-]).{6,}$/,
+                  message:
+                    '⚠ Password should contain: at least 6 characters, 1 number and 1 special character: +, -, !, #, $.',
+                },
+              })}
               type="password"
               placeholder="Enter password"
-              required
             />
+            <FormError>
+              {errors.password && <p>{errors.password.message}</p>}
+            </FormError>
 
             <button>Submit</button>
           </form>

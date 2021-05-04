@@ -4,11 +4,6 @@
   @include link;
 }
 
-.signup__container p {
-  @include link;
-  margin-bottom: 20px;
-}
-
 .loader {
   margin-top: 100px;
 }
@@ -17,8 +12,18 @@
   @include home__main;
 }
 
+.signup__error {
+  color: $color-font;   
+  margin-bottom: 20px; 
+}
+
 .signup__form {
   @include home__form;
+  height: 350px;
+}
+
+.signup__form label {
+  @include home__form-label
 }
 
 .signup__form input {
@@ -51,5 +56,10 @@
 
   .signup__form {
     width: 270px;
+    margin-top: 30px;
+  }
+
+  .signup__error{
+    font-size: 12px;
   }
 }

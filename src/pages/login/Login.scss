@@ -4,9 +4,9 @@
   @include link;
 }
 
-.login__container p {
-  @include link;
-  margin-bottom: 20px;
+.login__error { 
+  color: $color-font; 
+  margin-bottom: 20px; 
 }
 
 .loader {
@@ -19,6 +19,11 @@
 
 .login__form {
   @include home__form;
+  height: 250px;
+}
+
+.login__form label {
+  @include home__form-label
 }
 
 .login__form input {
@@ -51,5 +56,9 @@
 
   .login__form {
     width: 270px;
+  }
+
+  .login__error{
+    font-size: 12px;
   }
 }

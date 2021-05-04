@@ -4,7 +4,7 @@ import { StateContext } from '../../utils/stateProvider';
 import { extractDataFromObject } from '../../utils/utils';
 import { auth } from '../../utils/firebase';
 import { useHistory } from 'react-router-dom';
-import axios from 'axios';
+import { axiosInstance } from '../../utils/axios';
 import Top from '../../components/top/Top';
 import Navbar from '../../components/navbar/Navbar';
 import Form from '../../components/form/Form';
@@ -24,16 +24,14 @@ export default function Dashboard() {
     });
 
   useEffect(() => {
-    const fetchedUsers = axios
-      .get(
-        'https://contacts-d9f0b-default-rtdb.europe-west1.firebasedatabase.app/users.json',
-      )
+    const fetchedUsers = axiosInstance
+      .get('users.json')
       .then((resp) => {
         const usersArr = extractDataFromObject(resp);
         const user = usersArr.filter((e) => e.email === sessionEmail);
         setUsername(user[0].username);
       })
-      .catch((err) => console.log(err)); 
+      .catch((err) => console.log(err));
 
     return fetchedUsers;
   }, [setUsername, sessionEmail]);
@@ -41,14 +39,14 @@ export default function Dashboard() {
   return (
     <section className="dashboard__container">
       <Top>
-        <p>Welcome {username}!</p>     
+        <p>Welcome {username}!</p>
 
         <button onClick={handleLogout} className="dashboard__btn-logout">
           log out
         </button>
       </Top>
 
-      <Navbar/>
+      <Navbar />
 
       <Main>
         <Form />
