@@ -1,27 +1,37 @@
-import React, { useContext } from 'react';
+import { useStateContext } from '../../utils/stateProvider';
+import { SET_MOBILE, SET_PHONE, SET_EMAIL } from '../../constants';
 import './Subform.scss';
-import { StateContext } from '../../utils/stateProvider';
 
 export default function SubForm() {
-  const { setMobile, setPhone, setEmail } = useContext(StateContext);
+  const { dispatch } = useStateContext();
 
   return (
     <div className="subform">
       <div className="subform__mobile">
         <label>Mobile format: 09x xxx(x) xxx</label>
         <input
-          onChange={(e) => setMobile(e.target.value)}
+          onChange={(e) =>
+            dispatch({
+              type: SET_MOBILE,
+              payload: { key: 'mobile', value: e.target.value },
+            })
+          }
           type="tel"
           placeholder="Enter mobile"
           maxLength="12"
-          required 
+          required
         />
       </div>
 
       <div className="subform__phone">
         <label>Phone format: 0x(x) xxx(x) xxx</label>
         <input
-          onChange={(e) => setPhone(e.target.value)}
+          onChange={(e) =>
+            dispatch({
+              type: SET_PHONE,
+              payload: { key: 'phone', value: e.target.value },
+            })
+          }
           type="tel"
           placeholder="Enter phone"
           maxLength="12"
@@ -30,7 +40,12 @@ export default function SubForm() {
       </div>
 
       <input
-        onChange={(e) => setEmail(e.target.value)}
+        onChange={(e) =>
+          dispatch({
+            type: SET_EMAIL,
+            payload: { key: 'email', value: e.target.value },
+          })
+        }
         className="subform__email"
         type="email"
         placeholder="Enter email"

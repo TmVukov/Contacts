@@ -1,56 +1,71 @@
-import React, { useState, createContext, useEffect } from 'react';
+import React, { useReducer, createContext, useEffect, useContext } from 'react';
 import { auth } from '../utils/firebase';
+import { SET_CURRENT_USER, SET_LOADING } from '../constants';
 
-export const StateContext = createContext(); 
+export const StateContext = createContext(null);
+
+const initialState = {
+  contacts: [],
+  name: '',
+  surname: '',
+  username: '',
+  email: '',
+  mobile: null,
+  phone: null,
+  currentUser: null,
+  currentPage: 1,
+  contactsPerPage: 10,
+  loading: true,
+};
+
+function reducer(state, action) {  
+  const { type, payload } = action;
+  const { key, value} = payload;
+
+  switch (type) {
+    case type:
+      if (state.hasOwnProperty(key)) {
+        return { ...state, [key]: value };
+      } else {
+        throw new Error(`Unknown field: ${key}`);
+      }
+    default:
+      throw new Error(`Unknown action type: ${type}`);
+  }
+}
 
 export default function StateProvider({ children }) {
-  const [contacts, setContacts] = useState([]);
-  const [name, setName] = useState('');
-  const [surname, setSurname] = useState('');
-  const [mobile, setMobile] = useState();
-  const [phone, setPhone] = useState();
-  const [email, setEmail] = useState('');
-  const [username, setUsername] = useState('');
-  const [currentPage, setCurrentPage] = useState(1);
-  const [contactsPerPage, setContactsPerPage] = useState('10');
-  const [currentUser, setCurrentUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
-      setCurrentUser(user);
-      setLoading(false);
+      dispatch({
+        type: SET_CURRENT_USER,
+        payload: { key: 'currentUser', value: user },
+      });
+
+      dispatch({
+        type: SET_LOADING,
+        payload: { key: 'loading', value: false },
+      });
     });
 
-    return unsubscribe;
+    return () => unsubscribe();
   }, []);
 
-  const state = {
-    contacts,
-    setContacts,
-    name,
-    setName,
-    surname,
-    setSurname,
-    mobile,
-    setMobile,
-    phone,
-    setPhone,
-    email,
-    setEmail,
-    username,
-    setUsername,
-    currentPage,
-    setCurrentPage,
-    contactsPerPage,
-    setContactsPerPage,
-    currentUser,
-    setCurrentUser,
-  };
-
   return (
-    <StateContext.Provider value={state}>
-      {!loading && children}
+    <StateContext.Provider value={{ state, dispatch }}>
+      {!state.loading && children}
     </StateContext.Provider>
   );
+}
+
+export function useStateContext() {
+  const context = useContext(StateContext);
+
+  if (!context) {
+    throw new Error('useStateContext must be used within StateContextProvider');
+  }
+
+  return context;
 }

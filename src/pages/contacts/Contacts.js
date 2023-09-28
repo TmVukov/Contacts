@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import './Contacts.scss';
 import Top from '../../components/top/Top';
 import Navbar from '../../components/navbar/Navbar';
-import { StateContext } from '../../utils/stateProvider';
+import { useStateContext } from '../../utils/stateProvider';
+import { SET_CONTACTS } from '../../constants';
 import { extractDataFromObject } from '../../utils/utils';
 import { getId } from '../../utils/utils';
 import { axiosInstance } from '../../utils/axios';
@@ -16,16 +17,23 @@ import Footer from '../../components/footer/Footer';
 export default function Contacts() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const [search, setSearch] = useState([]);
+  const [filteredContacts, setFilteredContacts] = useState([]);
   const [selectedValue, setSelectedValue] = useState('a-z');
 
-  const { contacts, setContacts, currentPage, contactsPerPage } = useContext(
-    StateContext,
-  );
+  const { state, dispatch } = useStateContext();
+  const { contacts, currentPage, contactsPerPage } = state;
 
   const lastContact = currentPage * contactsPerPage;
   const firstContact = lastContact - contactsPerPage;
-  const currentContacts = contacts.slice(firstContact, lastContact);
+
+  const displayedContacts = useMemo(
+    () => contacts.slice(firstContact, lastContact),
+    [contacts, firstContact, lastContact],
+  );
+
+  useEffect(() => {
+    setFilteredContacts(displayedContacts);
+  }, [displayedContacts]);
 
   useEffect(() => {
     setLoading(true);
@@ -36,7 +44,11 @@ export default function Contacts() {
         const props = extractDataFromObject(resp);
         const sorted = props.sort((a, b) => (a.surname > b.surname ? 1 : -1));
 
-        setContacts(sorted);
+        dispatch({
+          type: SET_CONTACTS,
+          payload: { key: 'contacts', value: sorted },
+        });
+
         setLoading(false);
       })
       .catch((err) => {
@@ -45,7 +57,7 @@ export default function Contacts() {
       });
 
     return fetchedContacts;
-  }, [setContacts]);
+  }, [dispatch]);
 
   const handleFavorite = (id) => {
     let contact = contacts.filter((e) => e.id === id);
@@ -61,7 +73,11 @@ export default function Contacts() {
       }
       return obj;
     });
-    setContacts(updatedContacts);
+
+    dispatch({
+      type: SET_CONTACTS,
+      payload: { key: 'contacts', value: updatedContacts },
+    });
 
     getId(id);
 
@@ -75,21 +91,50 @@ export default function Contacts() {
       .catch((err) => console.log(err));
   };
 
+  const handleSearch = (e) => {
+    const searchTerm = e.target.value;
+
+    if (!searchTerm) {
+      setFilteredContacts(displayedContacts);
+      return;
+    }
+
+    const filteredContacts = displayedContacts.filter((contact) =>
+      [contact.name, contact.surname, contact.email].some((field) =>
+        field.toLowerCase().includes(searchTerm.toLowerCase()),
+      ),
+    );
+
+    setFilteredContacts(filteredContacts);
+  };
+
+  const handleSort = (e) => {
+    const sortOption = e.target.value;
+    setSelectedValue(sortOption);
+
+    if (!sortOption) {
+      setFilteredContacts(displayedContacts);
+      return;
+    }
+
+    const sortedContacts = [...displayedContacts];
+    
+    sortedContacts.sort((a, b) => {
+      if (sortOption === 'a-z') return a.surname.localeCompare(b.surname);
+      return b.surname.localeCompare(a.surname);
+    });
+
+    setFilteredContacts(sortedContacts);
+  };
+
   return (
     <section className="contacts__container">
       <Top>
-        <input
-          onChange={(e) => setSearch(e.target.value)}
-          type="search"
-          placeholder="Search..."
-        />
+        <input onChange={handleSearch} type="search" placeholder="Search..." />
 
         <div className="contacts__sort">
           <p>sort by:</p>
-          <select
-            value={selectedValue}
-            onChange={(e) => setSelectedValue(e.target.value)}
-          >
+          <select value={selectedValue} onChange={handleSort}>
             <option value="a-z">a-z</option>
             <option value="z-a">z-a</option>
           </select>
@@ -115,57 +160,41 @@ export default function Contacts() {
               <th>Email</th>
               <th>Star</th>
             </tr>
-            {currentContacts
-              .filter((contact) => {
-                if (!search.length) return contact;
-                return (
-                  contact.name.includes(search) ||
-                  contact.surname.includes(search) ||
-                  contact.email.includes(search)
-                );
-              })
-              .sort((a, b) => {
-                if (selectedValue === 'a-z')
-                  return a.surname > b.surname ? 1 : -1;
-                return a.surname < b.surname ? 1 : -1;
-              })
-              .map((contact, i) => (
-                <tr key={i}>
-                  <td>
-                    <Link
-                      to={`/details/${contact.id}`}
-                      onClick={() => getId(contact.id)}
-                    >
-                      {contact.name}
-                    </Link>
-                  </td>
-                  <td>
-                    <Link
-                      to={`/details/${contact.id}`}
-                      onClick={() => getId(contact.id)}
-                    >
-                      {contact.surname}
-                    </Link>
-                  </td>
-                  <td>
-                    <Link
-                      to={`/details/${contact.id}`}
-                      onClick={() => getId(contact.id)}
-                    >
-                      {contact.email}
-                    </Link>
-                  </td>
-                  <td>
-                    {contact.favorite ? (
-                      <AiFillStar onClick={() => handleFavorite(contact.id)} />
-                    ) : (
-                      <AiOutlineStar
-                        onClick={() => handleFavorite(contact.id)}
-                      />
-                    )}
-                  </td>
-                </tr>
-              ))}
+            {filteredContacts.map((contact, i) => (
+              <tr key={i}>
+                <td>
+                  <Link
+                    to={`/details/${contact.id}`}
+                    onClick={() => getId(contact.id)}
+                  >
+                    {contact.name}
+                  </Link>
+                </td>
+                <td>
+                  <Link
+                    to={`/details/${contact.id}`}
+                    onClick={() => getId(contact.id)}
+                  >
+                    {contact.surname}
+                  </Link>
+                </td>
+                <td>
+                  <Link
+                    to={`/details/${contact.id}`}
+                    onClick={() => getId(contact.id)}
+                  >
+                    {contact.email}
+                  </Link>
+                </td>
+                <td>
+                  {contact.favorite ? (
+                    <AiFillStar onClick={() => handleFavorite(contact.id)} />
+                  ) : (
+                    <AiOutlineStar onClick={() => handleFavorite(contact.id)} />
+                  )}
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
 

@@ -1,9 +1,8 @@
-import React, { useContext } from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { StateContext } from '../utils/stateProvider';
+import { useStateContext } from '../utils/stateProvider';
 
 export default function PrivateRoute({ component: Component, ...rest }) {
-  const { currentUser } = useContext(StateContext);
+  const { state: {currentUser} } = useStateContext();
 
   return (
     <Route

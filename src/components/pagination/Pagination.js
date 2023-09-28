@@ -1,37 +1,53 @@
-import React, { useContext } from 'react';
-import './Pagination.scss';
 import { Link } from 'react-router-dom';
-import { StateContext } from '../../utils/stateProvider';
+import { useStateContext } from '../../utils/stateProvider';
 import { GrFormPrevious, GrFormNext } from 'react-icons/gr';
+import { SET_CURRENT_PAGE, SET_CONTACTS_PER_PAGE } from '../../constants';
+import './Pagination.scss';
 
 export default function Pagination() {
-  const {
-    contacts,
-    currentPage,
-    setCurrentPage,
-    contactsPerPage,
-    setContactsPerPage,
-  } = useContext(StateContext);
+  const { state, dispatch } = useStateContext();
+  const { contacts, currentPage, contactsPerPage } = state;
 
   const pageNumbers = [];
-  let pageNumber = Math.ceil(contacts.length / contactsPerPage);
+  const pageNumber = Math.ceil(contacts.length / contactsPerPage);
 
   for (let i = 1; i <= pageNumber; i++) {
     pageNumbers.push(i);
   }
 
-  const handlePagination = (pageNumber) => setCurrentPage(pageNumber);
+  const handlePagination = (pageNumber) => {
+    dispatch({
+      type: SET_CURRENT_PAGE,
+      payload: { key: 'currentPage', value: pageNumber },
+    });
+  };
 
   const handlePrev = () => {
-    setCurrentPage(currentPage - 1);
+    dispatch({
+      type: SET_CURRENT_PAGE,
+      payload: { key: 'currentPage', value: currentPage - 1 },
+    });
 
-    if (currentPage <= 1) setCurrentPage(1);
+    if (currentPage <= 1) {
+      dispatch({
+        type: SET_CURRENT_PAGE,
+        payload: { key: 'currentPage', value: 1 },
+      });
+    }
   };
 
   const handleNext = () => {
-    setCurrentPage(currentPage + 1);
+    dispatch({
+      type: SET_CURRENT_PAGE,
+      payload: { key: 'currentPage', value: currentPage + 1 },
+    });
 
-    if (currentPage >= pageNumber) setCurrentPage(pageNumber);
+    if (currentPage >= pageNumber) {
+      dispatch({
+        type: SET_CURRENT_PAGE,
+        payload: { key: 'currentPage', value: pageNumber },
+      });
+    }
   };
 
   return (
@@ -54,7 +70,12 @@ export default function Pagination() {
         <p>sort by:</p>
         <select
           value={contactsPerPage}
-          onChange={(e) => setContactsPerPage(e.target.value)}
+          onChange={(e) =>
+            dispatch({
+              type: SET_CONTACTS_PER_PAGE,
+              payload: { key: 'contactsPerPage', value: e.target.value },
+            })
+          }
         >
           <option value="5">5</option>
           <option value="10">10</option>

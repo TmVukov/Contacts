@@ -1,15 +1,19 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Details.scss';
 import Top from '../../components/top/Top';
 import Navbar from '../../components/navbar/Navbar';
-import { StateContext } from '../../utils/stateProvider';
+import { useStateContext } from '../../utils/stateProvider';
+import { SET_CONTACTS } from '../../constants';
 import { axiosInstance } from '../../utils/axios';
 import Main from '../../components/main/Main';
 import Footer from '../../components/footer/Footer';
 
 export default function Details() {
   const [error, setError] = useState('');
-  const { contacts, setContacts } = useContext(StateContext);
+  const {
+    state: { contacts },
+    dispatch,
+  } = useStateContext();
   const sessionId = JSON.parse(sessionStorage.getItem('id'));
 
   useEffect(() => {
@@ -17,17 +21,25 @@ export default function Details() {
       .get(`contacts/${sessionId}.json`)
       .then((resp) => {
         console.log(resp.data);
-        setContacts([resp.data]);
+
+        dispatch({
+          type: SET_CONTACTS,
+          payload: { key: 'contacts', value: [resp.data] },
+        });
       })
       .catch((err) => setError(err));
 
     return detail;
-  }, [setContacts, sessionId]);
+  }, [dispatch, sessionId]);
 
   const deleteContact = () => {
     axiosInstance.delete(`contacts/${sessionId}.json`).then((resp) => {
       console.log(resp);
-      setContacts([]);
+
+      dispatch({
+        type: SET_CONTACTS,
+        payload: { key: 'contacts', value: [] },
+      });
     });
   };
 
@@ -37,7 +49,9 @@ export default function Details() {
       <Navbar />
 
       <Main>
-        <button className='details__btn' onClick={deleteContact}>Delete Contact</button>
+        <button className="details__btn" onClick={deleteContact}>
+          Delete Contact
+        </button>
 
         {error ? (
           <p>{error}</p>

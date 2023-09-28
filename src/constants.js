@@ -1,0 +1,11 @@
+export const SET_NAME = 'SET_NAME';
+export const SET_SURNAME = 'SET_SURNAME';
+export const SET_USERNAME = 'SET_USERNAME';
+export const SET_EMAIL = 'SET_EMAIL';
+export const SET_MOBILE = 'SET_MOBILE';
+export const SET_PHONE = 'SET_PHONE';
+export const SET_CONTACTS = 'SET_CONTACTS';
+export const SET_CURRENT_USER = 'SET_CURRENT_USER';
+export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
+export const SET_CONTACTS_PER_PAGE = 'SET_CONTACTS_PER_PAGE';
+export const SET_LOADING = 'SET_LOADING';

@@ -1,7 +1,8 @@
-import React, { useState, useContext, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import './Form.scss';
-import { StateContext } from '../../utils/stateProvider';
 import { axiosInstance } from '../../utils/axios';
+import { useStateContext } from '../../utils/stateProvider';
+import { SET_NAME, SET_SURNAME } from '../../constants';
 import SubForm from '../subform/SubForm';
 
 export default function Form() {
@@ -11,16 +12,8 @@ export default function Form() {
 
   const formRef = useRef();
 
-  const {
-    name,
-    setName,
-    surname,
-    setSurname,
-    mobile,
-    phone,
-    email,
-    favorite,
-  } = useContext(StateContext);
+  const { state, dispatch } = useStateContext();
+  const { name, surname, mobile, phone, email, favorite } = state;
 
   //const emailReg = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/
 
@@ -84,7 +77,12 @@ export default function Form() {
       )}
 
       <input
-        onChange={(e) => setName(e.target.value)}
+        onChange={(e) =>
+          dispatch({
+            type: SET_NAME,
+            payload: { key: 'name', value: e.target.value },
+          })
+        }
         type="text"
         placeholder="Enter name"
         maxLength="100"
@@ -92,7 +90,12 @@ export default function Form() {
       />
 
       <input
-        onChange={(e) => setSurname(e.target.value)}
+        onChange={(e) =>
+          dispatch({
+            type: SET_SURNAME,
+            payload: { key: 'surname', value: e.target.value },
+          })
+        }
         type="text"
         placeholder="Enter surname"
         maxLength="300"

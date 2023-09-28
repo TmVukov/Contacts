@@ -1,6 +1,6 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import './Signup.scss';
-import { StateContext } from '../../utils/stateProvider';
+import { useStateContext } from '../../utils/stateProvider';
 import { auth } from '../../utils/firebase';
 import { Link, useHistory } from 'react-router-dom';
 import { axiosInstance } from '../../utils/axios';
@@ -10,13 +10,14 @@ import Footer from '../../components/footer/Footer';
 import { useForm } from 'react-hook-form';
 import FormError from '../../components/formError/FormError';
 import { IoMdContact } from 'react-icons/io';
+import { SET_CURRENT_USER, SET_USERNAME } from '../../constants';
 
-export default function SignUp() {  
+export default function SignUp() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const history = useHistory();
 
-  const { setUsername, setCurrentUser } = useContext(StateContext);
+  const { dispatch } = useStateContext();
 
   const {
     register,
@@ -26,14 +27,21 @@ export default function SignUp() {
 
   const onHandleSubmit = (data) => {
     const { username, email, password } = data;
+    const user = { email, username };
 
     setLoading(true);
 
     auth
       .createUserWithEmailAndPassword(email, password)
-      .then(() => {
-        setCurrentUser(user);
-        history.push('/');
+      .then((user) => {
+        dispatch({
+          type: SET_CURRENT_USER,
+          payload: { key: 'currentUser', value: user },
+        });
+
+        if (user) {
+          history.push('/');
+        }
       })
       .catch((err) => {
         setError(err.message);
@@ -44,10 +52,12 @@ export default function SignUp() {
         }, 5000);
       });
 
-    setUsername(username);
-    sessionStorage.setItem('user', JSON.stringify(email));
+    dispatch({
+      type: SET_USERNAME,
+      payload: { key: 'username', value: username },
+    });
 
-    const user = { email, username };
+    sessionStorage.setItem('user', JSON.stringify(email));
 
     axiosInstance
       .post('users.json/', user)
@@ -79,7 +89,7 @@ export default function SignUp() {
             className="signup__form"
             noValidate
           >
-            {error && <p className='signup__error'>{error}</p>}
+            {error && <p className="signup__error">{error}</p>}
 
             <label>Username</label>
             <input

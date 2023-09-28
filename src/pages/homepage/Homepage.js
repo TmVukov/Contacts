@@ -2,7 +2,6 @@ import React from 'react';
 import './Homepage.scss';
 import { Link } from 'react-router-dom';
 import { IoMdContact } from 'react-icons/io';
-import Main from '../../components/main/Main';
 
 export default function Homepage() {
   return (

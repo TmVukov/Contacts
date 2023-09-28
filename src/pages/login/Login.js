@@ -1,6 +1,6 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import './Login.scss';
-import { StateContext } from '../../utils/stateProvider';
+import { useStateContext } from '../../utils/stateProvider';
 import { auth } from '../../utils/firebase';
 import { Link, useHistory } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
@@ -9,13 +9,14 @@ import Footer from '../../components/footer/Footer';
 import { useForm } from 'react-hook-form';
 import FormError from '../../components/formError/FormError';
 import { IoMdContact } from 'react-icons/io';
+import { SET_CURRENT_USER } from '../../constants';
 
-export default function LogIn() {  
+export default function LogIn() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const history = useHistory();
 
-  const { setCurrentUser } = useContext(StateContext);
+  const { dispatch } = useStateContext();
 
   const {
     register,
@@ -31,10 +32,13 @@ export default function LogIn() {
     auth
       .signInWithEmailAndPassword(email, password)
       .then((user) => {
-        setCurrentUser(user);
+        dispatch({
+          type: SET_CURRENT_USER,
+          payload: { key: 'currentUser', value: user },
+        });
         history.push('/');
       })
-      .catch(err => {
+      .catch((err) => {
         setError(err.message);
         setLoading(false);
         setTimeout(() => {
@@ -64,8 +68,12 @@ export default function LogIn() {
             width={80}
           />
         ) : (
-          <form onSubmit={handleSubmit(onHandleSubmit)} className="login__form" noValidate>
-            {error && <p className='login__error'>{error} Please try again.</p>}
+          <form
+            onSubmit={handleSubmit(onHandleSubmit)}
+            className="login__form"
+            noValidate
+          >
+            {error && <p className="login__error">{error} Please try again.</p>}
 
             <label>Email</label>
             <input
@@ -96,7 +104,7 @@ export default function LogIn() {
               type="password"
               placeholder="Enter password"
             />
-             <FormError>
+            <FormError>
               {errors.password && <p>{errors.password.message}</p>}
             </FormError>
 
